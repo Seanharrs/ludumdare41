@@ -1,4 +1,5 @@
 ﻿using EZObjectPools;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,7 +8,9 @@ using UnityEngine;
 [RequireComponent(typeof(PooledObject))]
 public class Bullet : MonoBehaviour
 {
-    public float damage;
+    private float m_Damage;
+    public float damage { get { return m_Damage; } }
+
     [SerializeField] private float m_velocity;
 
     public void SetDirection(Vector2 target)
@@ -25,5 +28,10 @@ public class Bullet : MonoBehaviour
     public void Disable()
     {
         GetComponent<PooledObject>().Disable();
+    }
+
+    public void SetDamage(int dmg)
+    {
+        m_Damage = dmg;
     }
 }

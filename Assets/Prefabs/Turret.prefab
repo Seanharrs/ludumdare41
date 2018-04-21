@@ -52,10 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84cc78a69e7761444805c4a866273cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_bulletPrefab: {fileID: 1589498552726558, guid: 35b2e6131abd73d43bfd8df3cdb8447a,
-    type: 2}
-  m_delay: 1
-  m_maxShootingRange: 5
+  m_Damage: 5
+  m_Range: 10
+  m_ShootSpeed: 2
 --- !u!212 &212136825934542150
 SpriteRenderer:
   m_ObjectHideFlags: 1

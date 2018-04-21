@@ -2,16 +2,28 @@
 using System.Collections;
 using UnityEngine;
 
-public class TurretAttack : MonoBehaviour
+public class TurretAttack : MonoBehaviour, ITower
 {
     //[SerializeField] private GameObject m_bulletPrefab;
-    [SerializeField] private float m_delay;
-    [SerializeField] private float m_maxShootingRange;
+    //[SerializeField] private float m_delay;
+    //[SerializeField] private float m_maxShootingRange;
 
     private static EZObjectPool m_pool;
 
     private int m_count;
 
+    [SerializeField]
+    private int m_Damage;
+    public int damage { get { return m_Damage; } }
+
+    [SerializeField]
+    private int m_Range;
+    public int range { get { return m_Range; } }
+
+    [SerializeField]
+    private float m_ShootSpeed;
+    public float shootSpeed { get { return m_ShootSpeed; } }
+    
     private void Start()
     {
         if(m_pool == null)
@@ -40,17 +52,16 @@ public class TurretAttack : MonoBehaviour
                 {
                     continue;
                 }
-                if(Vector2.Distance(enemy.transform.position, transform.position) < m_maxShootingRange)
+                if(Vector2.Distance(enemy.transform.position, transform.position) < m_Range)
                 {
-                    GameObject bullet;
-                    m_pool.TryGetNextObject(transform.position, Quaternion.identity, out bullet);
-                    bullet.GetComponent<Bullet>()
-                        .SetDirection(enemy.transform.position);
-                    yield return new WaitForSeconds(m_delay);
+                    GameObject bulletObj;
+                    m_pool.TryGetNextObject(transform.position, Quaternion.identity, out bulletObj);
+                    Bullet bullet = bulletObj.GetComponent<Bullet>();
+                    bullet.SetDirection(enemy.transform.position);
+                    bullet.SetDamage(m_Damage);
+                    yield return new WaitForSeconds(m_ShootSpeed);
                 }
             }
         }
     }
-
-
 }
