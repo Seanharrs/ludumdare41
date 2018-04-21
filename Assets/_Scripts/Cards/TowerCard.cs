@@ -4,22 +4,22 @@
 public class TowerCard : ScriptableObject, ICard, ITower
 {
     [SerializeField]
-    [Tooltip("The name of the card")]
+    [Tooltip("The name of the tower")]
     private string m_CardName;
     public string cardName { get { return m_CardName; } }
 
     [SerializeField]
-    [Tooltip("How much the card costs to play")]
+    [Tooltip("How much the tower costs to play")]
     private int m_Cost;
     public int cost { get { return m_Cost; } }
 
     [SerializeField]
-    [Tooltip("The card description")]
+    [Tooltip("The tower description")]
     private string m_Desc;
     public string description { get { return m_Desc; } }
 
     [SerializeField]
-    [Tooltip("The card artwork")]
+    [Tooltip("The tower artwork")]
     private Sprite m_Image;
     public Sprite image { get { return m_Image; } }
 
@@ -37,4 +37,9 @@ public class TowerCard : ScriptableObject, ICard, ITower
     [Tooltip("The shooting speed of the tower, in shots per second")]
     private float m_ShootSpeed;
     public float shootSpeed { get { return m_ShootSpeed; } }
+
+    [SerializeField]
+    [Tooltip("The prefab of the tower to be placed")]
+    private GameObject m_TowerPrefab;
+    public GameObject towerPrefab { get { return m_TowerPrefab; } }
 }

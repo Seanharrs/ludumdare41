@@ -9,6 +9,7 @@ TagManager:
   - SkillButton
   - InputCollider
   - ProjectileStorage
+  - Bullet
   layers:
   - Default
   - TransparentFX

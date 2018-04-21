@@ -29,6 +29,9 @@ public class TowerCardDisplay : MonoBehaviour
 
     private void Awake()
     {
+        if(!m_CardData)
+            return;
+
         m_CardName.text = m_CardData.cardName;
         m_Description.text = m_CardData.description;
         m_CardImage.sprite = m_CardData.image;
@@ -37,4 +40,11 @@ public class TowerCardDisplay : MonoBehaviour
         m_Range.text = m_CardData.range.ToString();
         m_ShootSpeed.text = m_CardData.shootSpeed.ToString();
 	}
+
+    public void SelectCard()
+    {
+        GameObject tower = Instantiate(m_CardData.towerPrefab);
+        tower.GetComponent<TurretAttack>().enabled = false;
+        tower.AddComponent<FollowMouse>();
+    }
 }
