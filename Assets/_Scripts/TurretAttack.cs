@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurretAttack : MonoBehaviour
 {
-    [SerializeField] private GameObject m_bulletPrefab;
+    //[SerializeField] private GameObject m_bulletPrefab;
     [SerializeField] private float m_delay;
     [SerializeField] private float m_maxShootingRange;
 

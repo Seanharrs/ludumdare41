@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
 
     private IEnumerator DeactiveDelay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         Disable();
     }
 
