@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 1395664410}
   - component: {fileID: 1395664408}
   - component: {fileID: 1395664407}
+  - component: {fileID: 1395664409}
   m_Layer: 0
   m_Name: Enemy Rino
   m_TagString: Untagged
@@ -895,6 +896,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!50 &1395664409
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1395664406}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!4 &1395664410
 Transform:
   m_ObjectHideFlags: 0
