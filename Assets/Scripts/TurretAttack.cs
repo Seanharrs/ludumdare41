@@ -23,6 +23,10 @@ public class TurretAttack : MonoBehaviour
         var enemies = FindObjectsOfType<Enemy>();
         foreach(var enemy in enemies)
         {
+            if(enemy == null)
+            {
+                continue;
+            }
             if(Vector2.Distance(enemy.transform.position, transform.position) < m_maxShootingRange)
             {
                 Instantiate(m_bulletPrefab, transform.position, Quaternion.identity, transform)
