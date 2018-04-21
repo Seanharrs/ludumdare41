@@ -10,7 +10,7 @@ public class FollowMouse : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            GetComponent<TurretAttack>().enabled = true;
+            GetComponent<TowerAttack>().enabled = true;
             Destroy(this);
         }
     }

@@ -52,9 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84cc78a69e7761444805c4a866273cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Damage: 5
+  m_Damage: 15
   m_Range: 10
   m_ShootSpeed: 2
+  m_MaxUpgradeLevel: 3
 --- !u!212 &212136825934542150
 SpriteRenderer:
   m_ObjectHideFlags: 1

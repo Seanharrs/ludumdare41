@@ -44,7 +44,7 @@ public class TowerCardDisplay : MonoBehaviour
     public void SelectCard()
     {
         GameObject tower = Instantiate(m_CardData.towerPrefab);
-        tower.GetComponent<TurretAttack>().enabled = false;
+        tower.GetComponent<TowerAttack>().enabled = false;
         tower.AddComponent<FollowMouse>();
     }
 }

@@ -2,12 +2,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class TurretAttack : MonoBehaviour, ITower
+[RequireComponent(typeof(TowerUpgrade))]
+public class TowerAttack : MonoBehaviour, ITower
 {
-    //[SerializeField] private GameObject m_bulletPrefab;
-    //[SerializeField] private float m_delay;
-    //[SerializeField] private float m_maxShootingRange;
-
     private static EZObjectPool m_pool;
 
     private int m_count;
@@ -23,9 +20,16 @@ public class TurretAttack : MonoBehaviour, ITower
     [SerializeField]
     private float m_ShootSpeed;
     public float shootSpeed { get { return m_ShootSpeed; } }
-    
+
+    [SerializeField]
+    private int m_MaxUpgradeLevel = 3;
+
+    private TowerUpgrade upgrade;
+
     private void Start()
     {
+        upgrade = GetComponent<TowerUpgrade>();
+
         if(m_pool == null)
         {
             m_pool = FindObjectOfType<EZObjectPool>();
@@ -39,6 +43,22 @@ public class TurretAttack : MonoBehaviour, ITower
             StartCoroutine(ShootEnemies());
             m_count = 0;
         }
+    }
+
+    /// <summary>
+    /// Called when an upgrade tower card is used on a tower
+    /// </summary>
+    /// <returns><c>true</c> if upgrade successful, <c>false</c> if tower is fully upgraded</returns>
+    public bool UpgradeTower()
+    {
+        if(upgrade.level >= upgrade.maxLevel)
+            return false;
+
+        upgrade.level++;
+        m_Damage = (int)(m_Damage * upgrade.damageBoost);
+        m_Range = (int)(m_Range * upgrade.rangeBoost);
+        m_ShootSpeed = m_ShootSpeed * upgrade.speedBoost;
+        return true;
     }
 
     private IEnumerator ShootEnemies()
@@ -56,9 +76,11 @@ public class TurretAttack : MonoBehaviour, ITower
                 {
                     GameObject bulletObj;
                     m_pool.TryGetNextObject(transform.position, Quaternion.identity, out bulletObj);
+
                     Bullet bullet = bulletObj.GetComponent<Bullet>();
                     bullet.SetDirection(enemy.transform.position);
                     bullet.SetDamage(m_Damage);
+
                     yield return new WaitForSeconds(m_ShootSpeed);
                 }
             }

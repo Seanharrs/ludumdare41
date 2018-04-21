@@ -29,17 +29,17 @@ public class MagicCard : ScriptableObject, ICard, IMagic
     public float damageMultiplier { get { return m_DamageMultiplier; } }
 
     [SerializeField]
-    [Tooltip("The speed multiplier the magic provides, 0 if none")]
-    private float m_SpeedMultiplier;
-    public float speedMultiplier { get { return m_SpeedMultiplier; } }
-
-    [SerializeField]
     [Tooltip("The range multiplier the magic provides, 0 if none")]
     private float m_RangeMultiplier;
     public float rangeMultiplier { get { return m_RangeMultiplier; } }
 
     [SerializeField]
-    [Tooltip("How long the magic lasts for, in seconds")]
+    [Tooltip("The speed multiplier the magic provides, 0 if none")]
+    private float m_SpeedMultiplier;
+    public float speedMultiplier { get { return m_SpeedMultiplier; } }
+
+    [SerializeField]
+    [Tooltip("How long the magic lasts for in seconds, 0 if infinite")]
     private int m_Time;
     public int effectLength { get { return m_Time; } }
 }
