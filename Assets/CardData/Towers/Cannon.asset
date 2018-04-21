@@ -18,3 +18,5 @@ MonoBehaviour:
   m_Dmg: 10
   m_Range: 4
   m_ShootSpeed: 0.5
+  m_TowerPrefab: {fileID: 1148452066878812, guid: ddde0f9124ed9524fa7b3421ac17fb46,
+    type: 2}

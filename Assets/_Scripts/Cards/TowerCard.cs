@@ -37,4 +37,9 @@ public class TowerCard : ScriptableObject, ICard, ITower
     [Tooltip("The shooting speed of the tower, in shots per second")]
     private float m_ShootSpeed;
     public float shootSpeed { get { return m_ShootSpeed; } }
+
+    [SerializeField]
+    [Tooltip("The prefab of the tower to be placed")]
+    private GameObject m_TowerPrefab;
+    public GameObject towerPrefab { get { return m_TowerPrefab; } }
 }
