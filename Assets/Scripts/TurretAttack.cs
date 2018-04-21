@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using EZObjectPools;
+using System.Collections;
 using UnityEngine;
 
 public class TurretAttack : MonoBehaviour
@@ -7,7 +8,17 @@ public class TurretAttack : MonoBehaviour
     [SerializeField] private float m_delay;
     [SerializeField] private float m_maxShootingRange;
 
+    private static EZObjectPool m_pool;
+
     private int m_count;
+
+    private void Start()
+    {
+        if(m_pool == null)
+        {
+            m_pool = FindObjectOfType<EZObjectPool>();
+        }
+    }
 
     private void FixedUpdate()
     {
@@ -20,19 +31,23 @@ public class TurretAttack : MonoBehaviour
 
     private IEnumerator ShootEnemies()
     {
-        var enemies = FindObjectsOfType<Enemy>();
-        foreach(var enemy in enemies)
+        if(m_pool != null)
         {
-            if(enemy == null)
+            var enemies = FindObjectsOfType<Enemy>();
+            foreach(var enemy in enemies)
             {
-                continue;
-            }
-            if(Vector2.Distance(enemy.transform.position, transform.position) < m_maxShootingRange)
-            {
-                Instantiate(m_bulletPrefab, transform.position, Quaternion.identity, transform)
-                    .GetComponent<Bullet>()
-                    .SetDirection(enemy.transform.position);
-                yield return new WaitForSeconds(m_delay);
+                if(enemy == null)
+                {
+                    continue;
+                }
+                if(Vector2.Distance(enemy.transform.position, transform.position) < m_maxShootingRange)
+                {
+                    GameObject bullet;
+                    m_pool.TryGetNextObject(transform.position, Quaternion.identity, out bullet);
+                    bullet.GetComponent<Bullet>()
+                        .SetDirection(enemy.transform.position);
+                    yield return new WaitForSeconds(m_delay);
+                }
             }
         }
     }

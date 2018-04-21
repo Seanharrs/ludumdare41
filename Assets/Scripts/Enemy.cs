@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.tag == "Bullet")
         {
             Damage(collision.GetComponent<Bullet>().damage);
-            Destroy(collision.gameObject);
+            collision.GetComponent<Bullet>().Disable();
         }
     }
 }
