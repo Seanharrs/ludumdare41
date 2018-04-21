@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b309466d151ee764a86f05a67076f37e, type: 3}
+  m_Name: Regions
+  m_EditorClassIdentifier: 
+  regions:
+  - name: Road
+    regionMask:
+      serializedVersion: 2
+      m_Bits: 256
+    movementCost: 0.5
+    gizmosColor: {r: 0.45588237, g: 0.45588237, b: 0.45588237, a: 1}
+  - name: Water
+    regionMask:
+      serializedVersion: 2
+      m_Bits: 16
+    movementCost: 2
+    gizmosColor: {r: 0.28676468, g: 0.70486796, b: 1, a: 1}
+  - name: Tower
+    regionMask:
+      serializedVersion: 2
+      m_Bits: 512
+    movementCost: 10000
+    gizmosColor: {r: 0.97794116, g: 0, b: 0, a: 1}
+  - name: Grass
+    regionMask:
+      serializedVersion: 2
+      m_Bits: 1024
+    movementCost: 1.5
+    gizmosColor: {r: 0, g: 1, b: 0.21379304, a: 1}
