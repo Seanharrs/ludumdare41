@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class CreepCardDisplay : MonoBehaviour
+public class EnemyCardDisplay : MonoBehaviour, IDisplay
 {
     [SerializeField]
-    private CreepCard m_CardData;
+    private EnemyCard m_CardData;
 
     [SerializeField]
     private Text m_CardName;
@@ -24,6 +24,8 @@ public class CreepCardDisplay : MonoBehaviour
     [SerializeField]
     private Text m_MoveSpeed;
 
+    private Deck deck;
+
     private void Awake()
     {
         if(!m_CardData)
@@ -35,5 +37,16 @@ public class CreepCardDisplay : MonoBehaviour
         m_Cost.text = m_CardData.cost.ToString();
         m_Health.text = m_CardData.health.ToString();
         m_MoveSpeed.text = m_CardData.moveSpeed.ToString();
+
+        deck = GetComponentInParent<Deck>();
+    }
+
+    public void SelectCard()
+    {
+        deck.selectedCard = gameObject;
+
+        GameObject enemy = Instantiate(m_CardData.enemyPrefab);
+        enemy.GetComponent<Enemy>().enabled = false;
+        enemy.AddComponent<FollowMouse>();
     }
 }

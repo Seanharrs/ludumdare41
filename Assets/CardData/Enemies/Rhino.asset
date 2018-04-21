@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b8f3940343fa2f4cb7f93e25c432497, type: 3}
-  m_Name: Beetle
+  m_Name: Rhino
   m_EditorClassIdentifier: 
-  m_CardName: Beetle
-  m_Cost: 1
-  m_Desc: A single beetle, fast moving but low health.
+  m_CardName: Rhinoceros
+  m_Cost: 2
+  m_Desc: A rhinoceros. Slow moving but high health.
   m_Image: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  m_Health: 25
-  m_MoveSpeed: 3
+  m_Health: 100
+  m_MoveSpeed: 1
