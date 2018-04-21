@@ -5,12 +5,11 @@
 public class Bullet : MonoBehaviour
 {
     public float damage;
-    [SerializeField] private float velocity;
+    [SerializeField] private float m_velocity;
 
     public void SetDirection(Vector2 target)
     {
-        GetComponent<Rigidbody2D>().velocity = (target - (Vector2)transform.position).normalized * velocity;
+        GetComponent<Rigidbody2D>().velocity = (target - (Vector2)transform.position).normalized * m_velocity;
         Destroy(gameObject, 5f);
     }
-
 }
