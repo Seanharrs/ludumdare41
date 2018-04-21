@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public static List<Enemy> enemiesAlive;
-    [SerializeField] private float mHealth = 100f;
+    [SerializeField] private float m_health = 100f;
 
     private void Start()
     {
@@ -18,8 +18,8 @@ public class Enemy : MonoBehaviour
 
     private void Damage(float damage)
     {
-        mHealth -= damage;
-        if(mHealth <= 0)
+        m_health -= damage;
+        if(m_health <= 0)
         {
             enemiesAlive.Remove(this);
             Destroy(gameObject);
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         if(collision.gameObject.tag == "Bullet")
         {
             Damage(collision.GetComponent<Bullet>().damage);
-            Destroy(collision.gameObject);
+            collision.GetComponent<Bullet>().Disable();
         }
     }
 }
