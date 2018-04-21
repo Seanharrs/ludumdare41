@@ -4,22 +4,22 @@
 public class TowerCard : ScriptableObject, ICard, ITower
 {
     [SerializeField]
-    [Tooltip("The name of the card")]
+    [Tooltip("The name of the tower")]
     private string m_CardName;
     public string cardName { get { return m_CardName; } }
 
     [SerializeField]
-    [Tooltip("How much the card costs to play")]
+    [Tooltip("How much the tower costs to play")]
     private int m_Cost;
     public int cost { get { return m_Cost; } }
 
     [SerializeField]
-    [Tooltip("The card description")]
+    [Tooltip("The tower description")]
     private string m_Desc;
     public string description { get { return m_Desc; } }
 
     [SerializeField]
-    [Tooltip("The card artwork")]
+    [Tooltip("The tower artwork")]
     private Sprite m_Image;
     public Sprite image { get { return m_Image; } }
 
