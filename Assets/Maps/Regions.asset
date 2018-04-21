@@ -18,21 +18,25 @@ MonoBehaviour:
       m_Bits: 256
     movementCost: 0.5
     gizmosColor: {r: 0.45588237, g: 0.45588237, b: 0.45588237, a: 1}
+    nodeType: 3
   - name: Water
     regionMask:
       serializedVersion: 2
       m_Bits: 16
     movementCost: 2
     gizmosColor: {r: 0.28676468, g: 0.70486796, b: 1, a: 1}
+    nodeType: 1
   - name: Tower
     regionMask:
       serializedVersion: 2
       m_Bits: 512
     movementCost: 10000
     gizmosColor: {r: 0.97794116, g: 0, b: 0, a: 1}
-  - name: Grass
+    nodeType: 2
+  - name: Ground
     regionMask:
       serializedVersion: 2
       m_Bits: 1024
-    movementCost: 1.5
+    movementCost: -1
     gizmosColor: {r: 0, g: 1, b: 0.21379304, a: 1}
+    nodeType: 0

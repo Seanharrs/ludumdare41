@@ -189,19 +189,3 @@ public class PathFinding {
 	}
 }
 
-public class Node {
-	public int x;
-	public int y;
-
-	public float movementCost;
-	public Node cameFrom;
-	public float costSoFar;
-	public bool isDiag;
-
-	public Node (int x,int y){
-		this.x = x;
-		this.y = y;
-		movementCost = -1;
-		isDiag = false;
-	}
-}

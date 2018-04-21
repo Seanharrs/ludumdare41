@@ -9,6 +9,7 @@ public class Region
 	public LayerMask regionMask;
 	public float movementCost;
 	public Color gizmosColor;
+	public NodeType nodeType;
 }
 
 [CreateAssetMenu()]

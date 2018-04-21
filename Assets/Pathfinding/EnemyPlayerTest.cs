@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Example script's for moveing from one point to another using a star algorithm
 public class EnemyPlayerTest : MonoBehaviour {
 
 	public Map maps;
