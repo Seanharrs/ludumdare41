@@ -39,6 +39,7 @@ public class Map : MonoBehaviour {
 	public Transform mapTransform;
 
 	public Regions regions;
+	public bool showGizmos;
 
 	Node[,] maps;
 	int width;
@@ -198,6 +199,11 @@ public class Map : MonoBehaviour {
 
 	// For Debugging Purpose
 	void OnDrawGizmos () {
+
+		if (!showGizmos) {
+			return;
+		}
+
 		if (maps != null) {
 			for (int y = 0; y < height; y++) {
 				for (int x = 0; x < width; x++) {
