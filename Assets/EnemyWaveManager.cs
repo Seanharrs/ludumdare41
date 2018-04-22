@@ -54,6 +54,11 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void SpawnWave()
     {
+		if (m_WaveNum == m_NumberOfWaves) {
+			Debug.LogError ("Wave finished");
+			return;
+		}
+
         for(int i = 0; i < m_Waves[m_WaveNum].Count; ++i)
             m_Waves[m_WaveNum][i].SetActive(true);
 

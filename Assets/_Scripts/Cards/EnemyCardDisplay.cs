@@ -47,6 +47,7 @@ public class EnemyCardDisplay : MonoBehaviour, IDisplay
         enemy.GetComponent<Enemy>().enabled = false;
         enemy.GetComponent<Collider2D>().enabled = false;
         enemy.AddComponent<FollowMouse>();
+
     }
 
     public bool TryPlayCard(Vector2 pos)
@@ -58,4 +59,9 @@ public class EnemyCardDisplay : MonoBehaviour, IDisplay
 
         return true;
     }
+
+	public Sprite GetTowerVisual ()
+	{
+		return m_CardData.image;
+	}
 }

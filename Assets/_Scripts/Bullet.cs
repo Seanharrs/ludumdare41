@@ -1,5 +1,4 @@
 ﻿using EZObjectPools;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -16,6 +15,12 @@ public class Bullet : MonoBehaviour
     public void SetDirection(Vector2 target)
     {
         GetComponent<Rigidbody2D>().velocity = (target - (Vector2)transform.position).normalized * m_velocity;
+        StartCoroutine(DeactiveDelay());
+    }
+
+    public void Shoot()
+    {
+        GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(Vector2.right);
         StartCoroutine(DeactiveDelay());
     }
 

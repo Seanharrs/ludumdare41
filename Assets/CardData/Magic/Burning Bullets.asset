@@ -14,8 +14,8 @@ MonoBehaviour:
   m_CardName: Burning Bullets
   m_Cost: 1
   m_Desc: Increases a tower's damage for a limited time.
-  m_Image: {fileID: 0}
+  m_Image: {fileID: 21300000, guid: 55b9ccdc27bd7c349ae2341ef9296b23, type: 3}
   m_DamageMultiplier: 1.5
-  m_SpeedMultiplier: 0.8
   m_RangeMultiplier: 1.2
+  m_SpeedMultiplier: 0.8
   m_Time: 10
