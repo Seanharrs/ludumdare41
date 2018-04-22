@@ -26,6 +26,9 @@ public class TowerAttack : MonoBehaviour, ITower
     [SerializeField]
     private int m_MaxUpgradeLevel = 3;
 
+    [SerializeField]
+    public Transform weapon;
+
     public bool canUpgrade { get { return m_UpgradeLevel != m_MaxUpgradeLevel; } }
 
     private void Start()
@@ -83,23 +86,42 @@ public class TowerAttack : MonoBehaviour, ITower
         if(m_pool != null)
         {
             var enemies = FindObjectsOfType<Enemy>();
+            float min = float.MaxValue;
+            Enemy minEnemy = null;
             foreach(var enemy in enemies)
             {
                 if(enemy == null)
                 {
                     continue;
                 }
-                if(Vector2.Distance(enemy.transform.position, transform.position) < m_Range)
+                var dis = Vector2.Distance(enemy.transform.position, transform.position);
+                if(dis < m_Range && dis < min)
                 {
-                    GameObject bulletObj;
-                    m_pool.TryGetNextObject(transform.position, Quaternion.identity, out bulletObj);
-
-                    Bullet bullet = bulletObj.GetComponent<Bullet>();
-                    bullet.SetDirection(enemy.transform.position);
-                    bullet.SetDamage(m_Damage);
-
-                    yield return new WaitForSeconds(m_ShootSpeed);
+                    min = dis;
+                    minEnemy = enemy;
                 }
+            }
+
+            if(minEnemy != null)
+            {
+                GameObject bulletObj;
+                m_pool.TryGetNextObject(transform.position, Quaternion.identity, out bulletObj);
+
+                Bullet bullet = bulletObj.GetComponent<Bullet>();
+                bullet.SetDirection(minEnemy.transform.position);
+                bullet.SetDamage(m_Damage);
+
+                var dir = minEnemy.transform.position - transform.position;
+                var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                weapon.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+                bullet.transform.Translate(dir.normalized * 0.8f);
+
+                yield return new WaitForSeconds(m_ShootSpeed);
+            }
+            else
+            {
+                weapon.rotation = Quaternion.Euler(0, 0, -45);
             }
         }
     }
