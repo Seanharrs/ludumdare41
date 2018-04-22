@@ -48,14 +48,14 @@ public class TowerAttack : MonoBehaviour, ITower
     public void Highlight()
     {
         Color color = GetComponent<SpriteRenderer>().color;
-        color.g += 100;
+        color.g = 255;
         GetComponent<SpriteRenderer>().color = color;
     }
 
     public void RemoveHighlight()
     {
         Color color = GetComponent<SpriteRenderer>().color;
-        color.g -= 100;
+        color.g = 155;
         GetComponent<SpriteRenderer>().color = color;
     }
 

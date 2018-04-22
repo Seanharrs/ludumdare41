@@ -156,6 +156,11 @@ Prefab:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114229105110524660, guid: bc7f6f9cfba8dc64998aa0260f61debc,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc7f6f9cfba8dc64998aa0260f61debc, type: 2}
   m_IsPrefabParent: 0
@@ -262,7 +267,13 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 9181a465ceba2524e8049f740a7936e5,
         type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 114777447161713766, guid: 37e48f1f95d97cd4d9329eeeb4230a53,
+        type: 2}
+      propertyPath: m_Text
+      value: Enemy Name
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114707416270078276, guid: 37e48f1f95d97cd4d9329eeeb4230a53, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 37e48f1f95d97cd4d9329eeeb4230a53, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &416064224 stripped
@@ -312,6 +323,11 @@ Prefab:
     - target: {fileID: 1716916860381106, guid: bc7f6f9cfba8dc64998aa0260f61debc, type: 2}
       propertyPath: m_Name
       value: Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114229105110524660, guid: bc7f6f9cfba8dc64998aa0260f61debc,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc7f6f9cfba8dc64998aa0260f61debc, type: 2}
@@ -397,6 +413,11 @@ Prefab:
     - target: {fileID: 4689006886822622, guid: bc7f6f9cfba8dc64998aa0260f61debc, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114229105110524660, guid: bc7f6f9cfba8dc64998aa0260f61debc,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc7f6f9cfba8dc64998aa0260f61debc, type: 2}
@@ -507,6 +528,11 @@ Prefab:
       propertyPath: m_Name
       value: Enemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 114229105110524660, guid: bc7f6f9cfba8dc64998aa0260f61debc,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc7f6f9cfba8dc64998aa0260f61debc, type: 2}
   m_IsPrefabParent: 0
@@ -613,7 +639,8 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 357dd10b5198deb449e3bcb675309607,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114937836020205182, guid: 6ffad57f65655e340b0246272773f1d4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6ffad57f65655e340b0246272773f1d4, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &1332048125 stripped
@@ -727,6 +754,11 @@ Prefab:
       propertyPath: m_Name
       value: Enemy (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 114229105110524660, guid: bc7f6f9cfba8dc64998aa0260f61debc,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc7f6f9cfba8dc64998aa0260f61debc, type: 2}
   m_IsPrefabParent: 0
@@ -793,8 +825,8 @@ Canvas:
   m_GameObject: {fileID: 1487241027}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1948122559}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -947,7 +979,8 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114385090641112890, guid: 717238798e68d294fa59ee85b6253dcf, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 717238798e68d294fa59ee85b6253dcf, type: 2}
   m_IsPrefabParent: 0
 --- !u!224 &1749977309 stripped
@@ -1120,7 +1153,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

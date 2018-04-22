@@ -52,7 +52,7 @@ public class EnemyCardDisplay : MonoBehaviour, IDisplay
     public bool TryPlayCard(Vector2 pos)
     {
         enemy.transform.position = pos;
-        enemy.GetComponent<Enemy>().enabled = true;
+        //enemy.GetComponent<Enemy>().enabled = true;
         enemy.GetComponent<Collider2D>().enabled = true;
         Destroy(enemy.GetComponent<FollowMouse>());
 
