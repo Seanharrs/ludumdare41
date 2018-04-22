@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(TowerUpgrade))]
 public class TowerAttack : MonoBehaviour, ITower
 {
     private static EZObjectPool m_pool;
@@ -21,15 +20,16 @@ public class TowerAttack : MonoBehaviour, ITower
     private float m_ShootSpeed;
     public float shootSpeed { get { return m_ShootSpeed; } }
 
+    private int m_UpgradeLevel = 1;
+    public int upgradeLevel { get { return m_UpgradeLevel; } }
+
     [SerializeField]
     private int m_MaxUpgradeLevel = 3;
 
-    private TowerUpgrade upgrade;
+    public bool canUpgrade { get { return m_UpgradeLevel != m_MaxUpgradeLevel; } }
 
     private void Start()
     {
-        upgrade = GetComponent<TowerUpgrade>();
-
         if(m_pool == null)
         {
             m_pool = FindObjectOfType<EZObjectPool>();
@@ -45,19 +45,36 @@ public class TowerAttack : MonoBehaviour, ITower
         }
     }
 
+    public void Highlight()
+    {
+        Color color = GetComponent<SpriteRenderer>().color;
+        color.g += 100;
+        GetComponent<SpriteRenderer>().color = color;
+    }
+
+    public void RemoveHighlight()
+    {
+        Color color = GetComponent<SpriteRenderer>().color;
+        color.g -= 100;
+        GetComponent<SpriteRenderer>().color = color;
+    }
+
     /// <summary>
     /// Called when an upgrade tower card is used on a tower
     /// </summary>
+    /// <param name="dmgMult">The damage increase multiplier</param>
+    /// <param name="spdMult">The speed increase multiplier</param>
+    /// <param name="rngMult">The range increase multiplier</param>
     /// <returns><c>true</c> if upgrade successful, <c>false</c> if tower is fully upgraded</returns>
-    public bool UpgradeTower()
+    public bool TryUpgradeTower(float dmgMult, float spdMult, float rngMult)
     {
-        if(upgrade.level >= upgrade.maxLevel)
+        if(m_UpgradeLevel >= m_MaxUpgradeLevel)
             return false;
 
-        upgrade.level++;
-        m_Damage = (int)(m_Damage * upgrade.damageBoost);
-        m_Range = (int)(m_Range * upgrade.rangeBoost);
-        m_ShootSpeed = m_ShootSpeed * upgrade.speedBoost;
+        m_UpgradeLevel++;
+        m_Damage = (int)(m_Damage * dmgMult);
+        m_ShootSpeed = m_ShootSpeed * spdMult;
+        m_Range = (int)(m_Range * rngMult);
         return true;
     }
 

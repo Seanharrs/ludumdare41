@@ -24,7 +24,9 @@ public class EnemyCardDisplay : MonoBehaviour, IDisplay
     [SerializeField]
     private Text m_MoveSpeed;
 
-    private Deck deck;
+    public CardType type { get { return CardType.Enemy; } }
+    
+    private GameObject enemy;
 
     private void Awake()
     {
@@ -37,16 +39,23 @@ public class EnemyCardDisplay : MonoBehaviour, IDisplay
         m_Cost.text = m_CardData.cost.ToString();
         m_Health.text = m_CardData.health.ToString();
         m_MoveSpeed.text = m_CardData.moveSpeed.ToString();
-
-        deck = GetComponentInParent<Deck>();
     }
 
     public void SelectCard()
     {
-        deck.selectedCard = gameObject;
-
-        GameObject enemy = Instantiate(m_CardData.enemyPrefab);
+        enemy = Instantiate(m_CardData.enemyPrefab);
         enemy.GetComponent<Enemy>().enabled = false;
+        enemy.GetComponent<Collider2D>().enabled = false;
         enemy.AddComponent<FollowMouse>();
+    }
+
+    public bool TryPlayCard(Vector2 pos)
+    {
+        enemy.transform.position = pos;
+        enemy.GetComponent<Enemy>().enabled = true;
+        enemy.GetComponent<Collider2D>().enabled = true;
+        Destroy(enemy.GetComponent<FollowMouse>());
+
+        return true;
     }
 }

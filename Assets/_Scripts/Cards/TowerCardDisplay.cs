@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class TowerCardDisplay : MonoBehaviour
+public class TowerCardDisplay : MonoBehaviour, IDisplay
 {
     [SerializeField]
     private TowerCard m_CardData;
@@ -27,6 +27,10 @@ public class TowerCardDisplay : MonoBehaviour
     [SerializeField]
     private Text m_ShootSpeed;
 
+    public CardType type { get { return CardType.Tower; } }
+
+    private GameObject tower;
+
     private void Awake()
     {
         if(!m_CardData)
@@ -43,8 +47,23 @@ public class TowerCardDisplay : MonoBehaviour
 
     public void SelectCard()
     {
-        GameObject tower = Instantiate(m_CardData.towerPrefab);
+        tower = Instantiate(m_CardData.towerPrefab);
         tower.GetComponent<TowerAttack>().enabled = false;
+        tower.GetComponent<Collider2D>().enabled = false;
         tower.AddComponent<FollowMouse>();
+    }
+
+    public bool TryPlayCard(Vector2 pos)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.one * 0.1f);
+        if(hit.collider)
+            return false;
+
+        tower.transform.position = pos;
+        tower.GetComponent<TowerAttack>().enabled = true;
+        tower.GetComponent<Collider2D>().enabled = true;
+        Destroy(tower.GetComponent<FollowMouse>());
+
+        return true;
     }
 }
