@@ -38,4 +38,10 @@ public class Menu : MonoBehaviour
             creditsMenu.SetActive(true);
         }
     }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quiting game...", this);
+        Application.Quit();
+    }
 }
