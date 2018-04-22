@@ -3913,11 +3913,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -6847,9 +6847,7 @@ MonoBehaviour:
 
     Music/SFX:
 
-    Blue Note
-
-    Trefle / CainbowRrash
+    Chromatunes
 
 
     Art:
@@ -6924,12 +6922,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2012728384}
-    characterCount: 115
+    characterCount: 95
     spriteCount: 0
-    spaceCount: 18
-    wordCount: 16
+    spaceCount: 14
+    wordCount: 13
     linkCount: 0
-    lineCount: 14
+    lineCount: 13
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
