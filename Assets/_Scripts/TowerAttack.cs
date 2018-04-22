@@ -45,7 +45,6 @@ public class TowerAttack : MonoBehaviour, ITower
         if(minEnemy == null)
         {
             weapon.rotation = Quaternion.Slerp(weapon.rotation, Quaternion.Euler(0, 0, -45), Time.deltaTime * m_weaponSpeed);
-            return;
         }
         var dir = minEnemy.transform.position - transform.position;
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -130,6 +129,11 @@ public class TowerAttack : MonoBehaviour, ITower
                 Bullet bullet = bulletObj.GetComponent<Bullet>();
                 bullet.SetDamage(m_Damage);
                 bullet.Shoot();
+                var dir = minEnemy.transform.position - transform.position;
+                var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                weapon.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+                bullet.transform.Translate(dir.normalized * 0.8f);
 
                 yield return new WaitForSeconds(m_ShootSpeed);
             }
