@@ -14,7 +14,7 @@ MonoBehaviour:
   m_CardName: Cannon
   m_Cost: 2
   m_Desc: Shoots cannon balls at creeps.
-  m_Image: {fileID: 21300000, guid: 83754dda70e33e741aa9d49a0ef402ee, type: 3}
+  m_Image: {fileID: 21300000, guid: 9efb7635f3f58a44c9690156cd9eef26, type: 3}
   m_Dmg: 10
   m_Range: 4
   m_ShootSpeed: 0.5
