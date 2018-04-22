@@ -47,23 +47,28 @@ public class TowerCardDisplay : MonoBehaviour, IDisplay
 
     public void SelectCard()
     {
-        tower = Instantiate(m_CardData.towerPrefab);
-        tower.GetComponent<TowerAttack>().enabled = false;
-        tower.GetComponent<Collider2D>().enabled = false;
-        tower.AddComponent<FollowMouse>();
+//        tower.GetComponent<TowerAttack>().enabled = false;
+//        tower.GetComponent<Collider2D>().enabled = false;
+		CardController.Instance.SetCurrentSelectedCard (this);
     }
 
     public bool TryPlayCard(Vector2 pos)
     {
-        RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.one * 0.1f);
-        if(hit.collider)
-            return false;
+		tower = Instantiate(m_CardData.towerPrefab);
+
+//        RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.one * 0.1f);
+//        if(hit.collider)
+//            return false;
 
         tower.transform.position = pos;
         tower.GetComponent<TowerAttack>().enabled = true;
         tower.GetComponent<Collider2D>().enabled = true;
-        Destroy(tower.GetComponent<FollowMouse>());
 
         return true;
     }
+
+	public Sprite GetTowerVisual ()
+	{
+		return m_CardData.image;
+	}
 }

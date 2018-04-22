@@ -112,8 +112,8 @@ public class TowerAttack : MonoBehaviour, ITower
                 bullet.SetDamage(m_Damage);
 
                 var dir = minEnemy.transform.position - transform.position;
-                var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                weapon.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                
+				weapon.right = -dir.normalized;
 
                 bullet.transform.Translate(dir.normalized * 0.8f);
 

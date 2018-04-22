@@ -14,7 +14,7 @@ MonoBehaviour:
   m_CardName: Rhinoceros
   m_Cost: 2
   m_Desc: A rhinoceros. Slow moving but high health.
-  m_Image: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  m_Image: {fileID: 21300008, guid: 634ecdb30adc59b4a98446520068844f, type: 3}
   m_Health: 100
   m_MoveSpeed: 1
   m_EnemyPrefab: {fileID: 1716916860381106, guid: bc7f6f9cfba8dc64998aa0260f61debc,

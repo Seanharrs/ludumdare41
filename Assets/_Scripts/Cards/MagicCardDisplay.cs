@@ -65,7 +65,7 @@ public class MagicCardDisplay : MonoBehaviour, IDisplay
 
     public bool TryPlayCard(Vector2 pos)
     {
-        RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.one * 0.1f);
+		RaycastHit2D hit = Physics2D.Raycast(pos +Vector2.up * 5, Vector3.up,10);
         if(!hit.collider)
             return false;
 
@@ -80,4 +80,9 @@ public class MagicCardDisplay : MonoBehaviour, IDisplay
 
         return success;
     }
+
+	public Sprite GetTowerVisual ()
+	{
+		return m_CardData.image;
+	}
 }
