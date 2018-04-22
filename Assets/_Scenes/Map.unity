@@ -169,7 +169,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 90871685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.67, y: 0.1, z: 0}
+  m_LocalPosition: {x: 3.84, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 320904676}
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SpawnPoint: {fileID: 1354159272}
-  m_SpawnOffset: {x: 5, y: 0}
+  m_SpawnOffset: {x: 0, y: 0}
   m_NumberOfWaves: 5
   m_EnemyTypes:
   - {fileID: 1522068882337764, guid: 56207c073e00738499730d46484ac3cb, type: 2}
@@ -583,7 +583,7 @@ Prefab:
     - target: {fileID: 224184522321046984, guid: 6ffad57f65655e340b0246272773f1d4,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -170
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224184522321046984, guid: 6ffad57f65655e340b0246272773f1d4,
         type: 2}
@@ -734,7 +734,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 27
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -757,7 +757,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 530432549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -5.85, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1265,6 +1265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df3a968fd877e1468a5bb197bf3e81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameOverScene: GameOver
   m_LivesLeft: 10
 --- !u!4 &1149660333
 Transform:
@@ -1367,7 +1368,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1354159271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -35, y: 10, z: 0}
+  m_LocalPosition: {x: -26.99, y: 9.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 277864942}
@@ -1428,7 +1429,7 @@ Prefab:
     - target: {fileID: 224426807611250746, guid: 717238798e68d294fa59ee85b6253dcf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -170
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224426807611250746, guid: 717238798e68d294fa59ee85b6253dcf,
         type: 2}
@@ -17344,7 +17345,7 @@ Prefab:
     - target: {fileID: 224426807611250746, guid: 717238798e68d294fa59ee85b6253dcf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -170
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224426807611250746, guid: 717238798e68d294fa59ee85b6253dcf,
         type: 2}
