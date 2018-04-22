@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece52cf9f656cf74fbedec124a4aec48, type: 3}
+  m_Name: Tower Upgrade
+  m_EditorClassIdentifier: 
+  m_CardName: Upgrade Tower
+  m_Cost: 1
+  m_Desc: Upgrades the selected tower's damage, speed, and range.
+  m_Image: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_DamageMultiplier: 1.2
+  m_RangeMultiplier: 1.4
+  m_SpeedMultiplier: 1.5
+  m_Time: 0

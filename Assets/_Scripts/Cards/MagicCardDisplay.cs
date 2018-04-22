@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class MagicCardDisplay : MonoBehaviour
+public class MagicCardDisplay : MonoBehaviour, IDisplay
 {
     [SerializeField]
     private MagicCard m_CardData;
@@ -30,6 +30,8 @@ public class MagicCardDisplay : MonoBehaviour
     [SerializeField]
     private Text m_EffectLength;
 
+    public CardType type { get { return CardType.Magic; } }
+
     private void Awake()
     {
         if(!m_CardData)
@@ -53,5 +55,29 @@ public class MagicCardDisplay : MonoBehaviour
             guiMulti.text = multi.ToString();
         else
             guiMulti.gameObject.SetActive(false);
+    }
+
+    public void SelectCard()
+    {
+        foreach(TowerAttack tower in FindObjectsOfType<TowerAttack>())
+            if(tower.canUpgrade) tower.Highlight();
+    }
+
+    public bool TryPlayCard(Vector2 pos)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.one * 0.1f);
+        if(!hit.collider)
+            return false;
+
+        TowerAttack tower = hit.collider.gameObject.GetComponent<TowerAttack>();
+        if(!tower)
+            return false;
+
+        bool success = tower.TryUpgradeTower(m_CardData.damageMultiplier, m_CardData.speedMultiplier, m_CardData.rangeMultiplier);
+        if(success)
+            foreach(TowerAttack t in FindObjectsOfType<TowerAttack>())
+                t.RemoveHighlight();
+
+        return success;
     }
 }

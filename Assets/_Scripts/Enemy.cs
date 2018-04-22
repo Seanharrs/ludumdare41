@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class Enemy : MonoBehaviour
 {
-    //public static List<Enemy> enemiesAlive;
     [SerializeField] private float m_health = 100f;
 
 	public float turnSpeed;
@@ -22,15 +20,6 @@ public class Enemy : MonoBehaviour
 	{
 		path = GameObject.FindObjectOfType<EnemeyPathGenerator> ().path;
 	}
-
-    //private void Start()
-    //{
-    //    if(enemiesAlive == null)
-    //    {
-    //        enemiesAlive = new List<Enemy>();
-    //    }
-    //    enemiesAlive.Add(this);
-    //}
 
 	void Update ()
 	{
@@ -106,7 +95,6 @@ public class Enemy : MonoBehaviour
         m_health -= damage;
         if(m_health <= 0)
         {
-            //enemiesAlive.Remove(this);
             Destroy(gameObject);
         }
     }

@@ -2,12 +2,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class TurretAttack : MonoBehaviour, ITower
+public class TowerAttack : MonoBehaviour, ITower
 {
-    //[SerializeField] private GameObject m_bulletPrefab;
-    //[SerializeField] private float m_delay;
-    //[SerializeField] private float m_maxShootingRange;
-
     private static EZObjectPool m_pool;
 
     private int m_count;
@@ -23,7 +19,15 @@ public class TurretAttack : MonoBehaviour, ITower
     [SerializeField]
     private float m_ShootSpeed;
     public float shootSpeed { get { return m_ShootSpeed; } }
-    
+
+    private int m_UpgradeLevel = 1;
+    public int upgradeLevel { get { return m_UpgradeLevel; } }
+
+    [SerializeField]
+    private int m_MaxUpgradeLevel = 3;
+
+    public bool canUpgrade { get { return m_UpgradeLevel != m_MaxUpgradeLevel; } }
+
     private void Start()
     {
         if(m_pool == null)
@@ -41,6 +45,39 @@ public class TurretAttack : MonoBehaviour, ITower
         }
     }
 
+    public void Highlight()
+    {
+        Color color = GetComponent<SpriteRenderer>().color;
+        color.g += 100;
+        GetComponent<SpriteRenderer>().color = color;
+    }
+
+    public void RemoveHighlight()
+    {
+        Color color = GetComponent<SpriteRenderer>().color;
+        color.g -= 100;
+        GetComponent<SpriteRenderer>().color = color;
+    }
+
+    /// <summary>
+    /// Called when an upgrade tower card is used on a tower
+    /// </summary>
+    /// <param name="dmgMult">The damage increase multiplier</param>
+    /// <param name="spdMult">The speed increase multiplier</param>
+    /// <param name="rngMult">The range increase multiplier</param>
+    /// <returns><c>true</c> if upgrade successful, <c>false</c> if tower is fully upgraded</returns>
+    public bool TryUpgradeTower(float dmgMult, float spdMult, float rngMult)
+    {
+        if(m_UpgradeLevel >= m_MaxUpgradeLevel)
+            return false;
+
+        m_UpgradeLevel++;
+        m_Damage = (int)(m_Damage * dmgMult);
+        m_ShootSpeed = m_ShootSpeed * spdMult;
+        m_Range = (int)(m_Range * rngMult);
+        return true;
+    }
+
     private IEnumerator ShootEnemies()
     {
         if(m_pool != null)
@@ -56,9 +93,11 @@ public class TurretAttack : MonoBehaviour, ITower
                 {
                     GameObject bulletObj;
                     m_pool.TryGetNextObject(transform.position, Quaternion.identity, out bulletObj);
+
                     Bullet bullet = bulletObj.GetComponent<Bullet>();
                     bullet.SetDirection(enemy.transform.position);
                     bullet.SetDamage(m_Damage);
+
                     yield return new WaitForSeconds(m_ShootSpeed);
                 }
             }
