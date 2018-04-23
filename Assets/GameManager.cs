@@ -5,8 +5,10 @@ public class GameManager : MonoBehaviour
 {
     public string GameOverScene = "GameOver";
 
+    public int HealthValue;
+
     [SerializeField]
-    private int m_LivesLeft = 10;
+    public int m_LivesLeft = 20;
         
     public void LoseLife()
     {
@@ -15,5 +17,10 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(GameOverScene);
         }
+    }
+
+    void Update()
+    {
+        HealthValue = m_LivesLeft;
     }
 }
