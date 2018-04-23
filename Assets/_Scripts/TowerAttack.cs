@@ -1,12 +1,11 @@
 ﻿using EZObjectPools;
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 
 public class TowerAttack : MonoBehaviour, ITower
 {
     private static EZObjectPool m_pool;
-    
+
     [SerializeField]
     private int m_Damage;
     public int damage { get { return m_Damage; } }
@@ -21,10 +20,10 @@ public class TowerAttack : MonoBehaviour, ITower
 
     private int m_UpgradeLevel = 1;
     public int upgradeLevel { get { return m_UpgradeLevel; } }
-    
+
     [SerializeField]
     private Sprite m_BulletSprite;
- 
+
     [SerializeField]
     private int m_MaxUpgradeLevel = 3;
 
