@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98e8b2a13f238d4f8b3cb31e797b173, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameOverScene: GameOver
   m_SpawnPoint: {fileID: 1354159272}
   m_SpawnOffset: {x: 0, y: 0}
   m_NumberOfWaves: 5
@@ -583,7 +584,7 @@ Prefab:
     - target: {fileID: 224184522321046984, guid: 6ffad57f65655e340b0246272773f1d4,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -170
       objectReference: {fileID: 0}
     - target: {fileID: 224184522321046984, guid: 6ffad57f65655e340b0246272773f1d4,
         type: 2}
@@ -1429,7 +1430,7 @@ Prefab:
     - target: {fileID: 224426807611250746, guid: 717238798e68d294fa59ee85b6253dcf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -170
       objectReference: {fileID: 0}
     - target: {fileID: 224426807611250746, guid: 717238798e68d294fa59ee85b6253dcf,
         type: 2}
@@ -17351,7 +17352,7 @@ Prefab:
     - target: {fileID: 224426807611250746, guid: 717238798e68d294fa59ee85b6253dcf,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -170
       objectReference: {fileID: 0}
     - target: {fileID: 224426807611250746, guid: 717238798e68d294fa59ee85b6253dcf,
         type: 2}

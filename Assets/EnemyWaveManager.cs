@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyWaveManager : MonoBehaviour
 {
+    public string GameOverScene = "GameOver";
+
     private List<List<GameObject>> m_Waves;
 
     [SerializeField]
@@ -56,7 +59,8 @@ public class EnemyWaveManager : MonoBehaviour
     {
 		if (m_WaveNum == m_NumberOfWaves) {
 			Debug.LogError ("Wave finished");
-			return;
+            SceneManager.LoadScene(GameOverScene);
+            return;
 		}
 
         for(int i = 0; i < m_Waves[m_WaveNum].Count; ++i)
