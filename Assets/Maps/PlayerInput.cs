@@ -26,6 +26,11 @@ public class PlayerInput : MonoBehaviour
             return;
         }
 
+        if(Input.GetMouseButtonUp(1) || Input.GetKeyUp(KeyCode.Escape))
+        {
+            CardController.instance.currentSelectedCard = null;
+        }
+
         PlayCard();
     }
 
@@ -56,7 +61,7 @@ public class PlayerInput : MonoBehaviour
 
         cardPlacementVisual.color = Color.white;
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonUp(0))
         {
             bool success = CardController.instance.currentSelectedCard.TryPlayCard(pos);
 
@@ -73,5 +78,6 @@ public class PlayerInput : MonoBehaviour
 
             CardController.instance.UseSelectedCard();
         }
+
     }
 }
