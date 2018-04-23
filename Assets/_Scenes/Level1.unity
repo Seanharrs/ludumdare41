@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WaveValue: 0
-  m_GameOverScene: GameOver
+  m_GameOverScene: Level2
   m_SecondsBetweenWaves: 20
   m_SpawnPoint: {fileID: 1354159272}
   m_MinSpawnOffset: 2
