@@ -16,9 +16,12 @@ public class Enemy : MonoBehaviour
 
     bool stop;
 
+    [SerializeField]
+    SpriteRenderer m_SpriteRenderer;
+
     void Start()
     {
-        path = GameObject.FindObjectOfType<EnemeyPathGenerator>().path;
+        path = FindObjectOfType<EnemeyPathGenerator>().path;
     }
 
     void Update()
@@ -30,12 +33,12 @@ public class Enemy : MonoBehaviour
             targetPos = FollowPath();
         }
 
-        Vector2 targetDir = Seek(targetPos);
-        if(targetDir != Vector2.zero)
-        {
-            Rotate(targetDir);
-        }
-        Move();
+        //Vector2 targetDir = Seek(targetPos);
+        //if(targetDir != Vector2.zero)
+        //{
+        //    Rotate(targetDir);
+        //}
+        Move(targetPos);
     }
 
     Vector2 FollowPath()
@@ -77,24 +80,30 @@ public class Enemy : MonoBehaviour
         return (targetPos - (Vector2)transform.position).normalized;
     }
 
-    void Rotate(Vector2 targetDir)
-    {
+    //void Rotate(Vector2 targetDir)
+    //{
 
-        float targetAngle = Mathf.Atan2(targetDir.y, (targetDir.x + 0.01f)) * Mathf.Rad2Deg;
+    //    float targetAngle = Mathf.Atan2(targetDir.y, (targetDir.x + 0.01f)) * Mathf.Rad2Deg;
 
-        Quaternion finalRot = Quaternion.AngleAxis(targetAngle, Vector3.forward);
-        transform.rotation = Quaternion.Lerp(transform.rotation, finalRot, turnSpeed * Time.deltaTime);
+    //    Quaternion finalRot = Quaternion.AngleAxis(targetAngle, Vector3.forward);
+    //    transform.rotation = Quaternion.Lerp(transform.rotation, finalRot, turnSpeed * Time.deltaTime);
 
-    }
+    //}
 
-    void Move()
+    void Move(Vector3 targetPos)
     {
 
         if(stop)
         {
             return;
         }
-        transform.Translate((Vector3.right) * speed * Time.deltaTime, Space.Self);
+        Vector2 offset = (transform.position - targetPos);
+        if(offset.x < 0 && !m_SpriteRenderer.flipX)
+            m_SpriteRenderer.flipX = true;
+        else if(offset.x >= 0 && m_SpriteRenderer.flipX)
+            m_SpriteRenderer.flipX = false;
+        transform.position = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
+        //transform.Translate((Vector3.right) * speed * Time.deltaTime, Space.Self);
 
     }
 

@@ -139,6 +139,7 @@ MonoBehaviour:
   m_health: 100
   turnSpeed: 3
   speed: 6
+  m_SpriteRenderer: {fileID: 212400741910437870}
 --- !u!212 &212400741910437870
 SpriteRenderer:
   m_ObjectHideFlags: 1
