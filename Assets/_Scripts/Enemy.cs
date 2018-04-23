@@ -113,7 +113,9 @@ public class Enemy : MonoBehaviour
         m_health -= damage;
         if(m_health <= 0)
         {
-            Destroy(gameObject);
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            GetComponentInChildren<Animator>().SetTrigger("Die");
+            Destroy(gameObject, 4f);
         }
     }
 

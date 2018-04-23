@@ -37,7 +37,7 @@ public class EnemyWaveManager : MonoBehaviour
     private int m_WaveBonus;
 
     private int m_WaveNum = 0;
-	private bool m_WaveFinished = false;
+    private bool m_WaveFinished = false;
 
     private void Awake()
     {
@@ -71,7 +71,7 @@ public class EnemyWaveManager : MonoBehaviour
     {
         if(m_WaveNum == m_NumberOfWaves)
         {
-			m_WaveFinished = true;
+            m_WaveFinished = true;
             return;
         }
 
@@ -79,26 +79,33 @@ public class EnemyWaveManager : MonoBehaviour
             m_Waves[m_WaveNum][i].SetActive(true);
 
         CardController.instance.AddCurrency(m_WaveBonus);
+
+        // New Cards
+        CardController.instance.GiveNewCards();
+
         ++m_WaveNum;
     }
 
     void Update()
     {
         WaveValue = m_WaveNum;
-		if (!m_WaveFinished) {
-			return;
-		}
+        if(!m_WaveFinished)
+        {
+            return;
+        }
 
 
-		for (int i = 0; i < m_Waves.Count; i++) {
-			for (int j = 0; j < m_Waves[i].Count; j++) {
-				if (m_Waves [i] [j].gameObject != null && m_Waves [i] [j].gameObject.activeSelf)
-					return;
-			}
-		}
+        for(int i = 0; i < m_Waves.Count; i++)
+        {
+            for(int j = 0; j < m_Waves[i].Count; j++)
+            {
+                if(m_Waves[i][j].gameObject != null && m_Waves[i][j].gameObject.activeSelf)
+                    return;
+            }
+        }
 
-		// no move enemy so you win
-		SceneManager.LoadScene(m_GameOverScene);
+        // no move enemy so you win
+        SceneManager.LoadScene(m_GameOverScene);
 
     }
 }

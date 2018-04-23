@@ -2034,6 +2034,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CurrencyLeft: 10
+  cards:
+  - {fileID: 1195705655854650, guid: 717238798e68d294fa59ee85b6253dcf, type: 2}
+  - {fileID: 1195705655854650, guid: 246b29fa0605c4b4587d15c68e680bf1, type: 2}
+  - {fileID: 1341895354070340, guid: 6ffad57f65655e340b0246272773f1d4, type: 2}
 --- !u!114 &114948352386274072
 MonoBehaviour:
   m_ObjectHideFlags: 1
