@@ -22,7 +22,10 @@ public class TowerAttack : MonoBehaviour, ITower
 
     private int m_UpgradeLevel = 1;
     public int upgradeLevel { get { return m_UpgradeLevel; } }
-
+    
+    [SerializeField]
+    private Sprite m_BulletSprite;
+ 
     [SerializeField]
     private int m_MaxUpgradeLevel = 3;
 
@@ -59,6 +62,13 @@ public class TowerAttack : MonoBehaviour, ITower
             StartCoroutine(ShootEnemies());
             m_count = 0;
         }
+    }
+
+    public void SetTowerValues(int damage, int range, float shootSpeed)
+    {
+        m_Damage = damage;
+        m_Range = range;
+        m_ShootSpeed = shootSpeed;
     }
 
     public void Highlight()
@@ -129,6 +139,7 @@ public class TowerAttack : MonoBehaviour, ITower
 
                 Bullet bullet = bulletObj.GetComponent<Bullet>();
                 bullet.SetDamage(m_Damage);
+                bullet.SetSprite(m_BulletSprite);
                 bullet.Shoot();
 
                 yield return new WaitForSeconds(m_ShootSpeed);

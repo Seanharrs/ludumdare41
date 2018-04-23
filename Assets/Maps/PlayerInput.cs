@@ -6,55 +6,71 @@ using UnityEngine;
 // Example script for placeing the tower to it's position
 public class PlayerInput : MonoBehaviour {
 
-	public SpriteRenderer towerPlacementVisual;
-	public Transform towerPlacementTransfrom;
+	public SpriteRenderer cardPlacementVisual;
+	public Transform cardPlacementTransform;
 
 	Map map;
 
 	void Start () {
-		map = GameObject.FindObjectOfType<Map> ();
-		towerPlacementVisual.sprite = null;
+		map = FindObjectOfType<Map>();
+		cardPlacementVisual.sprite = null;
 	}
 	
 	void Update () {
 
-		towerPlacementTransfrom.gameObject.SetActive (false);
+		cardPlacementTransform.gameObject.SetActive (false);
 
 		if (CardController.Instance.currentSelectedCard == null) {
 			return;
 		}
 
-		towerPlacementTransfrom.gameObject.SetActive (true);
-		Vector3 pos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			
-		pos.z = 0;
+        if(CardController.Instance.currentSelectedCard.type == CardType.Tower)
+            PlayCard(4, 4);
+        else if(CardController.Instance.currentSelectedCard.type == CardType.Magic)
+            PlayCard(1, 1);
+    }
 
-		pos.x =  Mathf.RoundToInt(pos.x);
-		pos.y = Mathf.RoundToInt(pos.y);
-		towerPlacementTransfrom.transform.localPosition = pos;
-		towerPlacementTransfrom.transform.localScale = Vector3.one ;
+    private void PlayCard(int sizeX, int sizeY)
+    {
+        cardPlacementTransform.gameObject.SetActive(true);
+        Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-		if (towerPlacementVisual.sprite == null) {
-			towerPlacementVisual.sprite = CardController.Instance.currentSelectedCard.GetTowerVisual ();
-		}
+        pos.z = 0;
 
-        // Tower is black if it cannot be placed on a tile and white if it can be placed on a tile
-		if (map.PlaceTower (pos,1,1)) {
-			towerPlacementVisual.color = Color.white;
-		} else {
-			towerPlacementVisual.color = Color.black;
-			return;
-		}
+        pos.x = Mathf.RoundToInt(pos.x);
+        pos.y = Mathf.RoundToInt(pos.y);
+        cardPlacementTransform.transform.localPosition = pos;
+        cardPlacementTransform.transform.localScale = Vector3.one;
 
-		if (Input.GetMouseButtonDown (0)) {
-			towerPlacementTransfrom.gameObject.SetActive (false);
-			CardController.Instance.currentSelectedCard.TryPlayCard (pos);
-			CardController.Instance.currentSelectedCard = null;
-			towerPlacementVisual.sprite = null;
-		}
-		
-	}
-		
+        if(cardPlacementVisual.sprite == null)
+        {
+            cardPlacementVisual.sprite = CardController.Instance.currentSelectedCard.GetCardVisual();
+        }
 
+        if((CardController.Instance.currentSelectedCard.type == CardType.Tower && !map.CanPlaceTower(pos, 1, 1))
+            || (CardController.Instance.currentSelectedCard.type == CardType.Magic && !map.CanUseMagic(pos, 1, 1)))
+        {
+            //Darken image if card cannot be used on that tile
+            cardPlacementVisual.color = Color.black;
+            return;
+        }
 
+        cardPlacementVisual.color = Color.white;
+        
+        if(Input.GetMouseButtonDown(0))
+        {
+            bool success = CardController.Instance.currentSelectedCard.TryPlayCard(pos);
+
+            if(!success)
+                return;
+
+            cardPlacementVisual.sprite = null;
+            cardPlacementTransform.gameObject.SetActive(false);
+
+            if(CardController.Instance.currentSelectedCard.type == CardType.Tower)
+                map.SetNodesOccupied(pos, sizeX, sizeY);
+
+            CardController.Instance.currentSelectedCard = null;
+        }
+    }
 }

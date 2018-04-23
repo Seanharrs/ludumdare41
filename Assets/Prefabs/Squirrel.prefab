@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114086897418382252}
   - component: {fileID: 61896470881711196}
   - component: {fileID: 95781032023111862}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Squirrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,8 +68,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1463537062703886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.202, y: -0.146, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4, y: -20, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 4608955912586000}
   m_Father: {fileID: 0}
@@ -114,7 +114,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.05, y: -0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -125,7 +125,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
 --- !u!95 &95781032023111862
 Animator:
@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Damage: 15
   m_Range: 5
   m_ShootSpeed: 2
+  m_BulletSprite: {fileID: 21300000, guid: 36660b901de44f148b794a779c022b4c, type: 3}
   m_MaxUpgradeLevel: 3
   weapon: {fileID: 4608955912586000}
   m_weaponSpeed: 3

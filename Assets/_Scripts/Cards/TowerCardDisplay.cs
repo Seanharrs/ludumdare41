@@ -54,20 +54,13 @@ public class TowerCardDisplay : MonoBehaviour, IDisplay
 
     public bool TryPlayCard(Vector2 pos)
     {
-		tower = Instantiate(m_CardData.towerPrefab);
-
-//        RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.one * 0.1f);
-//        if(hit.collider)
-//            return false;
-
-        tower.transform.position = pos;
-        tower.GetComponent<TowerAttack>().enabled = true;
-        tower.GetComponent<Collider2D>().enabled = true;
+		tower = Instantiate(m_CardData.towerPrefab, pos, Quaternion.identity);
+        tower.GetComponent<TowerAttack>().SetTowerValues(m_CardData.damage, m_CardData.range, m_CardData.shootSpeed);
 
         return true;
     }
 
-	public Sprite GetTowerVisual ()
+	public Sprite GetCardVisual()
 	{
 		return m_CardData.image;
 	}

@@ -59,13 +59,16 @@ public class MagicCardDisplay : MonoBehaviour, IDisplay
 
     public void SelectCard()
     {
+        CardController.Instance.SetCurrentSelectedCard(this);
+
         foreach(TowerAttack tower in FindObjectsOfType<TowerAttack>())
             if(tower.canUpgrade) tower.Highlight();
     }
 
     public bool TryPlayCard(Vector2 pos)
     {
-		RaycastHit2D hit = Physics2D.Raycast(pos +Vector2.up * 5, Vector3.up,10);
+        //Only hit tower colliders
+        RaycastHit2D hit = Physics2D.Raycast(pos, Vector3.up, 1f, LayerMask.GetMask(new[] { "BuiltTower" }));
         if(!hit.collider)
             return false;
 
@@ -81,7 +84,7 @@ public class MagicCardDisplay : MonoBehaviour, IDisplay
         return success;
     }
 
-	public Sprite GetTowerVisual ()
+	public Sprite GetCardVisual()
 	{
 		return m_CardData.image;
 	}

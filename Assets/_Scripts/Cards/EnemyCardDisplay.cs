@@ -60,7 +60,7 @@ public class EnemyCardDisplay : MonoBehaviour, IDisplay
         return true;
     }
 
-	public Sprite GetTowerVisual ()
+	public Sprite GetCardVisual()
 	{
 		return m_CardData.image;
 	}

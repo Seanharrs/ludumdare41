@@ -5,15 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class EnemyWaveManager : MonoBehaviour
 {
-    public string GameOverScene = "GameOver";
+    [SerializeField]
+    private string m_GameOverScene = "GameOver";
 
     private List<List<GameObject>> m_Waves;
+
+    [SerializeField]
+    private float m_SecondsBetweenWaves = 20f;
 
     [SerializeField]
     private Transform m_SpawnPoint;
 
     [SerializeField]
-    private Vector2 m_SpawnOffset;
+    private int m_MinSpawnOffset;
+
+    [SerializeField]
+    private int m_MaxSpawnOffset;
 
     [SerializeField]
     private int m_NumberOfWaves;
@@ -24,7 +31,6 @@ public class EnemyWaveManager : MonoBehaviour
     [SerializeField]
     private Transform m_EnemyHolder;
 
-    private float m_TimeBetweenWaves = 20f; //seconds
 
     private int m_WaveNum = 0;
 
@@ -41,7 +47,8 @@ public class EnemyWaveManager : MonoBehaviour
             int numEnemiesInWave = rand.Next(4 + extra, 5 + extra);
             for(int j = 0; j < numEnemiesInWave; ++j)
             {
-                Vector2 pos = (Vector2)m_SpawnPoint.position - (m_SpawnOffset * j);
+                Vector2 spawnOffset = new Vector2(rand.Next(m_MinSpawnOffset, m_MaxSpawnOffset), 0);
+                Vector2 pos = (Vector2)m_SpawnPoint.position - (spawnOffset * j);
                 GameObject enemy = Instantiate(m_EnemyTypes[rand.Next(m_EnemyTypes.Length)], pos, Quaternion.identity) as GameObject;
                 enemy.transform.parent = m_EnemyHolder;
                 m_Waves[i].Add(enemy);
@@ -52,14 +59,14 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("SpawnWave", 0.01f, m_TimeBetweenWaves);
+        InvokeRepeating("SpawnWave", 0.01f, m_SecondsBetweenWaves);
     }
 
     private void SpawnWave()
     {
 		if (m_WaveNum == m_NumberOfWaves) {
 			Debug.LogError ("Wave finished");
-            SceneManager.LoadScene(GameOverScene);
+            SceneManager.LoadScene(m_GameOverScene);
             return;
 		}
 

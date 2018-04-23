@@ -8,7 +8,8 @@ public enum NodeType{
 	WATER,
 	TOWER,
 	ROAD,
-	NONE
+	NONE,
+    OCCUPIED
 }
 
 public class Node {
@@ -147,7 +148,21 @@ public class Map : MonoBehaviour {
 		return worldPos;
 	}
 
-	public bool PlaceTower (Vector3 pos,int gridSizeX,int gridSizeY)
+    public void SetNodesOccupied (Vector3 pos,int gridSizeX,int gridSizeY)
+    {
+        Node node = GetNodeFromPosition(pos);
+        node.NodeType = NodeType.OCCUPIED;
+        for(int y = node.y; y < node.y + gridSizeY; y++) {
+            for(int x = node.x; x < node.x + gridSizeX; x++) {
+                if(x < Width && y < Height) {
+                    Node nextNode = Nodes[x, y];
+                    nextNode.NodeType = NodeType.OCCUPIED;
+                }
+            }
+        }
+    }
+
+	public bool CanPlaceTower (Vector3 pos,int gridSizeX,int gridSizeY)
 	{
 		Node node = GetNodeFromPosition (pos);
 		if (CanPlaceTower (gridSizeX, gridSizeY, node)) {
@@ -156,6 +171,14 @@ public class Map : MonoBehaviour {
 		return false;
 	}
 
+    public bool CanUseMagic (Vector3 pos,int gridSizeX,int gridSizeY)
+    {
+        Node node = GetNodeFromPosition(pos);
+        if (node.NodeType == NodeType.OCCUPIED && CanUseCard (gridSizeX, gridSizeY, node, NodeType.OCCUPIED)) {
+            return true;
+        }
+        return false;
+    }
 
 	// TODO here it should come tower so that it has it's own size and we can get it from ITowe ???
 	bool CanPlaceTower (int gridSizeX,int gridSizeY,Node node) {
@@ -166,13 +189,13 @@ public class Map : MonoBehaviour {
 		}
 
 		if (node.NodeType == NodeType.TOWER) {
-			if (CanPlaceTower (gridSizeX, gridSizeY, node, NodeType.TOWER)) {
+			if (CanUseCard (gridSizeX, gridSizeY, node, NodeType.TOWER)) {
 				return true;
 			}
 		}
 
 		if (node.NodeType == NodeType.GROUND) {
-			if (CanPlaceTower (gridSizeX, gridSizeY, node, NodeType.GROUND)) {
+			if (CanUseCard (gridSizeX, gridSizeY, node, NodeType.GROUND)) {
 				return true;
 			}
 		}
@@ -180,7 +203,7 @@ public class Map : MonoBehaviour {
 		return false;
 	}
 
-	bool CanPlaceTower (int gridSizeX,int gridSizeY,Node node,NodeType checkNode)
+	bool CanUseCard (int gridSizeX,int gridSizeY,Node node,NodeType checkNode)
 	{
 		for (int y = node.y; y < node.y + gridSizeY; y++) {
 			for (int x = node.x; x < node.x + gridSizeX; x++) {
