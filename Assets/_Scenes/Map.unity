@@ -1488,8 +1488,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1195705655854650, guid: 717238798e68d294fa59ee85b6253dcf, type: 2}
       propertyPath: m_Name
-      value: Tower Card (1)
+      value: Groundhog Card
       objectReference: {fileID: 0}
+    - target: {fileID: 114670933358876376, guid: 717238798e68d294fa59ee85b6253dcf,
+        type: 2}
+      propertyPath: m_CardData
+      value: 
+      objectReference: {fileID: 11400000, guid: 54259d0610b266446a1768942b7e5bce,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 717238798e68d294fa59ee85b6253dcf, type: 2}
   m_IsPrefabParent: 0
@@ -17386,6 +17392,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195705655854650, guid: 717238798e68d294fa59ee85b6253dcf, type: 2}
+      propertyPath: m_Name
+      value: Squirrel Card
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 717238798e68d294fa59ee85b6253dcf, type: 2}

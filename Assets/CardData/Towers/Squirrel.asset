@@ -9,14 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f1fc99719722fb44ba2dc3fc0108cb7, type: 3}
-  m_Name: Cannon
+  m_Name: Squirrel
   m_EditorClassIdentifier: 
   m_CardName: Cannon
   m_Cost: 2
-  m_Desc: Shoots cannon balls at creeps.
+  m_Desc: Shoots acorn at creeps.
   m_Image: {fileID: 21300000, guid: 9efb7635f3f58a44c9690156cd9eef26, type: 3}
   m_Dmg: 10
   m_Range: 4
-  m_ShootSpeed: 0.5
-  m_TowerPrefab: {fileID: 1148452066878812, guid: ddde0f9124ed9524fa7b3421ac17fb46,
+  m_ShootSpeed: 1
+  m_TowerPrefab: {fileID: 1463537062703886, guid: 076907450b3888048a94167893316907,
     type: 2}

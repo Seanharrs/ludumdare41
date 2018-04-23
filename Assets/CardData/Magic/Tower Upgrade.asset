@@ -14,7 +14,7 @@ MonoBehaviour:
   m_CardName: Upgrade Tower
   m_Cost: 1
   m_Desc: Upgrades the selected tower's damage, speed, and range.
-  m_Image: {fileID: 21300000, guid: 5077d2e60d44ef348b6afe5a1fb3dce8, type: 3}
+  m_Image: {fileID: 21300000, guid: 441e00181615e8b46b4059bb8098a00f, type: 3}
   m_DamageMultiplier: 1.2
   m_RangeMultiplier: 1.4
   m_SpeedMultiplier: 1.5
