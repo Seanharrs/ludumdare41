@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class EnemyWaveManager : MonoBehaviour
 {
+    public int WaveValue;
+
     [SerializeField]
     private string m_GameOverScene = "GameOver";
 
@@ -78,5 +80,9 @@ public class EnemyWaveManager : MonoBehaviour
 
         CardController.instance.AddCurrency(m_WaveBonus);
         ++m_WaveNum;
+    }
+
+    void Update() {
+        WaveValue = m_WaveNum;
     }
 }
