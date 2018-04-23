@@ -24,21 +24,18 @@ public class PlayerInput : MonoBehaviour {
 			return;
 		}
 
-        if(CardController.Instance.currentSelectedCard.type == CardType.Tower)
-            PlayCard(4, 4);
-        else if(CardController.Instance.currentSelectedCard.type == CardType.Magic)
-            PlayCard(1, 1);
+        PlayCard();
     }
 
-    private void PlayCard(int sizeX, int sizeY)
+    private void PlayCard()
     {
         cardPlacementTransform.gameObject.SetActive(true);
         Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         pos.z = 0;
 
-        pos.x = Mathf.RoundToInt(pos.x);
-        pos.y = Mathf.RoundToInt(pos.y);
+        pos.x = Mathf.Round(pos.x);
+        pos.y = Mathf.Round(pos.y);
         cardPlacementTransform.transform.localPosition = pos;
         cardPlacementTransform.transform.localScale = Vector3.one;
 
@@ -68,7 +65,7 @@ public class PlayerInput : MonoBehaviour {
             cardPlacementTransform.gameObject.SetActive(false);
 
             if(CardController.Instance.currentSelectedCard.type == CardType.Tower)
-                map.SetNodesOccupied(pos, sizeX, sizeY);
+                map.SetNodeOccupied(pos);
 
             CardController.Instance.currentSelectedCard = null;
         }

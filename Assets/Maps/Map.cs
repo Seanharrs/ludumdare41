@@ -8,6 +8,7 @@ public enum NodeType{
 	WATER,
 	TOWER,
 	ROAD,
+    TREE,
 	NONE,
     OCCUPIED
 }
@@ -148,18 +149,9 @@ public class Map : MonoBehaviour {
 		return worldPos;
 	}
 
-    public void SetNodesOccupied (Vector3 pos,int gridSizeX,int gridSizeY)
+    public void SetNodeOccupied (Vector3 pos)
     {
-        Node node = GetNodeFromPosition(pos);
-        node.NodeType = NodeType.OCCUPIED;
-        for(int y = node.y; y < node.y + gridSizeY; y++) {
-            for(int x = node.x; x < node.x + gridSizeX; x++) {
-                if(x < Width && y < Height) {
-                    Node nextNode = Nodes[x, y];
-                    nextNode.NodeType = NodeType.OCCUPIED;
-                }
-            }
-        }
+        GetNodeFromPosition(pos).NodeType = NodeType.OCCUPIED;
     }
 
 	public bool CanPlaceTower (Vector3 pos,int gridSizeX,int gridSizeY)
