@@ -61,8 +61,8 @@ public class MagicCardDisplay : MonoBehaviour, IDisplay
     {
         CardController.Instance.SetCurrentSelectedCard(this);
 
-        foreach(TowerAttack tower in FindObjectsOfType<TowerAttack>())
-            if(tower.canUpgrade) tower.Highlight();
+        //foreach(TowerAttack tower in FindObjectsOfType<TowerAttack>())
+        //    if(tower.canUpgrade) tower.Highlight();
     }
 
     public bool TryPlayCard(Vector2 pos)
@@ -77,9 +77,9 @@ public class MagicCardDisplay : MonoBehaviour, IDisplay
             return false;
 
         bool success = tower.TryUpgradeTower(m_CardData.damageMultiplier, m_CardData.speedMultiplier, m_CardData.rangeMultiplier);
-        if(success)
-            foreach(TowerAttack t in FindObjectsOfType<TowerAttack>())
-                t.RemoveHighlight();
+        //if(success)
+        //    foreach(TowerAttack t in FindObjectsOfType<TowerAttack>())
+        //        t.RemoveHighlight();
 
         return success;
     }

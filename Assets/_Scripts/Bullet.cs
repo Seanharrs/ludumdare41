@@ -21,7 +21,7 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         m_RotateDirection = Random.Range(0, 2) == 0 ? 1 : -1;
-        m_RotateSpeed = Random.Range(30f, 120f);
+        m_RotateSpeed = Random.Range(120f, 300f);
     }
 
     private void Update()
@@ -42,14 +42,14 @@ public class Bullet : MonoBehaviour
         GetComponent<PooledObject>().Disable();
     }
 
-    public void SetDirection(Vector2 target)
-    {
-        GetComponent<Rigidbody2D>().velocity = (target - (Vector2)transform.position).normalized * m_Velocity;
-    }
+    //public void SetDirection(Vector2 target)
+    //{
+    //    GetComponent<Rigidbody2D>().velocity = (target - (Vector2)transform.position).normalized * m_Velocity;
+    //}
 
     public void Shoot()
     {
-        GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(Vector2.right);
+        GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(Vector2.right) * m_Velocity;
         m_Rotate = true;
         transform.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
     }
