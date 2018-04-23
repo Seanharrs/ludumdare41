@@ -59,17 +59,18 @@ public class PlayerInput : MonoBehaviour
 			cardPlacementVisual.sprite = null;
 		}
 
-		if((CardController.instance.currentSelectedCard.type == CardType.Tower && !map.CanPlaceTower(pos, 1 , 1 ))
-            || (CardController.instance.currentSelectedCard.type == CardType.Magic && !map.CanUseMagic(pos, 1, 1)))
-        {
-            //Darken image if card cannot be used on that tile
-            cardPlacementVisual.color = Color.black;
-            return;
-        }
+		if (CardController.instance != null && CardController.instance.currentSelectedCard != null) {
+			if ((CardController.instance.currentSelectedCard.type == CardType.Tower && !map.CanPlaceTower (pos, 1, 1))
+			  || (CardController.instance.currentSelectedCard.type == CardType.Magic && !map.CanUseMagic (pos, 1, 1))) {
+				//Darken image if card cannot be used on that tile
+				cardPlacementVisual.color = Color.black;
+				return;
+			}
+		}
 
         cardPlacementVisual.color = Color.white;
 
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonDown(0))
         {
 			pos.x += map.gridSize/2f ;
 			pos.y += map.gridSize/2f ;
