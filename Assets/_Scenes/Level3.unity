@@ -4627,7 +4627,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -5293,7 +5293,7 @@ Prefab:
     - target: {fileID: 224767982445768028, guid: 7c8f05259bc71b244b74179941b5e630,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -170
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224168537478972982, guid: 7c8f05259bc71b244b74179941b5e630,
         type: 2}
@@ -5313,7 +5313,7 @@ Prefab:
     - target: {fileID: 224168537478972982, guid: 7c8f05259bc71b244b74179941b5e630,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -170
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224371543344464230, guid: 7c8f05259bc71b244b74179941b5e630,
         type: 2}
@@ -5333,7 +5333,7 @@ Prefab:
     - target: {fileID: 224371543344464230, guid: 7c8f05259bc71b244b74179941b5e630,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -170
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c8f05259bc71b244b74179941b5e630, type: 2}
