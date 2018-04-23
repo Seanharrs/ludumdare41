@@ -6,16 +6,20 @@ using UnityEngine.UI;
 public class HealthDisplay : MonoBehaviour {
 
     private Text text;
+    private GameManager manager;
 
-    private void Awake() { text = GetComponent<Text>(); }
+    private void Awake() {
+        text = GetComponent<Text>();
+        manager = FindObjectOfType<GameManager>();
+    }
 
     // Use this for initialization
     void Start () {
-        text.text = "69";
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        text.text = "Health: "+ manager.HealthValue.ToString();
+    }
 }
