@@ -1,28 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 // Example script for placeing the tower to it's position
-public class PlayerInput : MonoBehaviour {
+public class PlayerInput : MonoBehaviour
+{
 
-	public SpriteRenderer cardPlacementVisual;
-	public Transform cardPlacementTransform;
+    public SpriteRenderer cardPlacementVisual;
+    public Transform cardPlacementTransform;
 
-	Map map;
+    Map map;
 
-	void Start () {
-		map = FindObjectOfType<Map>();
-		cardPlacementVisual.sprite = null;
-	}
-	
-	void Update () {
+    void Start()
+    {
+        map = FindObjectOfType<Map>();
+        cardPlacementVisual.sprite = null;
+    }
 
-		cardPlacementTransform.gameObject.SetActive (false);
+    void Update()
+    {
 
-		if (CardController.instance.currentSelectedCard == null) {
-			return;
-		}
+        cardPlacementTransform.gameObject.SetActive(false);
+
+        if(CardController.instance.currentSelectedCard == null)
+        {
+            return;
+        }
 
         PlayCard();
     }
@@ -53,7 +55,7 @@ public class PlayerInput : MonoBehaviour {
         }
 
         cardPlacementVisual.color = Color.white;
-        
+
         if(Input.GetMouseButtonDown(0))
         {
             bool success = CardController.instance.currentSelectedCard.TryPlayCard(pos);
@@ -66,6 +68,8 @@ public class PlayerInput : MonoBehaviour {
 
             if(CardController.instance.currentSelectedCard.type == CardType.Tower)
                 map.SetNodeOccupied(pos);
+
+            CardController.instance.currentSelectedCard.DestroyCard();
 
             CardController.instance.UseSelectedCard();
         }

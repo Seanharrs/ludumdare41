@@ -45,7 +45,7 @@ public class MagicCardDisplay : MonoBehaviour, IDisplay
         ShowMultiplier(m_CardData.damageMultiplier, m_DamageBoost);
         ShowMultiplier(m_CardData.speedMultiplier, m_SpeedBoost);
         ShowMultiplier(m_CardData.rangeMultiplier, m_RangeBoost);
-        
+
         m_EffectLength.text = m_CardData.effectLength.ToString();
     }
 
@@ -93,7 +93,12 @@ public class MagicCardDisplay : MonoBehaviour, IDisplay
     }
 
     public Sprite GetCardVisual()
-	{
-		return m_CardData.image;
-	}
+    {
+        return m_CardData.image;
+    }
+
+    public void DestroyCard()
+    {
+        Destroy(gameObject);
+    }
 }

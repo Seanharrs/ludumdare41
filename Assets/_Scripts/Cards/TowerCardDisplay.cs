@@ -43,13 +43,13 @@ public class TowerCardDisplay : MonoBehaviour, IDisplay
         m_Damage.text = m_CardData.damage.ToString();
         m_Range.text = m_CardData.range.ToString();
         m_ShootSpeed.text = m_CardData.shootSpeed.ToString();
-	}
+    }
 
     public void SelectCard()
     {
-//        tower.GetComponent<TowerAttack>().enabled = false;
-//        tower.GetComponent<Collider2D>().enabled = false;
-		CardController.instance.currentSelectedCard = this;
+        //        tower.GetComponent<TowerAttack>().enabled = false;
+        //        tower.GetComponent<Collider2D>().enabled = false;
+        CardController.instance.currentSelectedCard = this;
     }
 
     public bool TryPlayCard(Vector2 pos)
@@ -57,7 +57,7 @@ public class TowerCardDisplay : MonoBehaviour, IDisplay
         if(CardController.instance.currencyLeft < m_CardData.cost)
             return false;
 
-		tower = Instantiate(m_CardData.towerPrefab, pos, Quaternion.identity);
+        tower = Instantiate(m_CardData.towerPrefab, pos, Quaternion.identity);
         tower.GetComponent<TowerAttack>().SetTowerValues(m_CardData.damage, m_CardData.range, m_CardData.shootSpeed);
 
         return true;
@@ -69,7 +69,12 @@ public class TowerCardDisplay : MonoBehaviour, IDisplay
     }
 
     public Sprite GetCardVisual()
-	{
-		return m_CardData.image;
-	}
+    {
+        return m_CardData.image;
+    }
+
+    public void DestroyCard()
+    {
+        Destroy(gameObject);
+    }
 }

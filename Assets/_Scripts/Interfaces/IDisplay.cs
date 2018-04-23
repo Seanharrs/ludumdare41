@@ -9,4 +9,6 @@ public interface IDisplay
     bool TryPlayCard(Vector2 pos);
     int GetCardCost();
     Sprite GetCardVisual();
+
+    void DestroyCard();
 }

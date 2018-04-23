@@ -72,4 +72,9 @@ public class EnemyCardDisplay : MonoBehaviour, IDisplay
 	{
 		return m_CardData.image;
 	}
+
+    public void DestroyCard()
+    {
+        Destroy(gameObject);
+    }
 }

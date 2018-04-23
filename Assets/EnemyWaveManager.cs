@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -69,11 +68,12 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void SpawnWave()
     {
-		if (m_WaveNum == m_NumberOfWaves) {
-			Debug.LogError ("Wave finished");
+        if(m_WaveNum == m_NumberOfWaves)
+        {
+            Debug.LogError("Wave finished");
             SceneManager.LoadScene(m_GameOverScene);
             return;
-		}
+        }
 
         for(int i = 0; i < m_Waves[m_WaveNum].Count; ++i)
             m_Waves[m_WaveNum][i].SetActive(true);
@@ -82,7 +82,8 @@ public class EnemyWaveManager : MonoBehaviour
         ++m_WaveNum;
     }
 
-    void Update() {
+    void Update()
+    {
         WaveValue = m_WaveNum;
     }
 }

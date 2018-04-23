@@ -30,7 +30,15 @@ public class CardController : MonoBehaviour {
 		m_Anim = GetComponent<Animator> ();
 	}
 
-	public void ShowCard ()
+    private void Update()
+    {
+        if(currentSelectedCard != null)
+        {
+
+        }
+    }
+
+    public void ShowCard ()
 	{
 		m_ShowCards = !m_ShowCards;
 		m_Anim.SetTrigger (m_ShowCards ? "In" : "Out");
