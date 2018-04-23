@@ -31,6 +31,9 @@ public class EnemyWaveManager : MonoBehaviour
     [SerializeField]
     private Transform m_EnemyHolder;
 
+    [SerializeField]
+    [Tooltip("The bonus card currency provided per wave")]
+    private int m_WaveBonus;
 
     private int m_WaveNum = 0;
 
@@ -73,6 +76,7 @@ public class EnemyWaveManager : MonoBehaviour
         for(int i = 0; i < m_Waves[m_WaveNum].Count; ++i)
             m_Waves[m_WaveNum][i].SetActive(true);
 
+        CardController.instance.AddCurrency(m_WaveBonus);
         ++m_WaveNum;
     }
 }

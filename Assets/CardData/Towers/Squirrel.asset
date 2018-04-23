@@ -15,8 +15,8 @@ MonoBehaviour:
   m_Cost: 2
   m_Desc: Shoots acorns at enemies
   m_Image: {fileID: 21300000, guid: 9efb7635f3f58a44c9690156cd9eef26, type: 3}
-  m_Dmg: 10
-  m_Range: 4
+  m_Dmg: 25
+  m_Range: 20
   m_ShootSpeed: 1
   m_TowerPrefab: {fileID: 1463537062703886, guid: 076907450b3888048a94167893316907,
     type: 2}

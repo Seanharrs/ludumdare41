@@ -20,7 +20,7 @@ public class PlayerInput : MonoBehaviour {
 
 		cardPlacementTransform.gameObject.SetActive (false);
 
-		if (CardController.Instance.currentSelectedCard == null) {
+		if (CardController.instance.currentSelectedCard == null) {
 			return;
 		}
 
@@ -41,11 +41,11 @@ public class PlayerInput : MonoBehaviour {
 
         if(cardPlacementVisual.sprite == null)
         {
-            cardPlacementVisual.sprite = CardController.Instance.currentSelectedCard.GetCardVisual();
+            cardPlacementVisual.sprite = CardController.instance.currentSelectedCard.GetCardVisual();
         }
 
-        if((CardController.Instance.currentSelectedCard.type == CardType.Tower && !map.CanPlaceTower(pos, 1, 1))
-            || (CardController.Instance.currentSelectedCard.type == CardType.Magic && !map.CanUseMagic(pos, 1, 1)))
+        if((CardController.instance.currentSelectedCard.type == CardType.Tower && !map.CanPlaceTower(pos, 1, 1))
+            || (CardController.instance.currentSelectedCard.type == CardType.Magic && !map.CanUseMagic(pos, 1, 1)))
         {
             //Darken image if card cannot be used on that tile
             cardPlacementVisual.color = Color.black;
@@ -56,7 +56,7 @@ public class PlayerInput : MonoBehaviour {
         
         if(Input.GetMouseButtonDown(0))
         {
-            bool success = CardController.Instance.currentSelectedCard.TryPlayCard(pos);
+            bool success = CardController.instance.currentSelectedCard.TryPlayCard(pos);
 
             if(!success)
                 return;
@@ -64,10 +64,10 @@ public class PlayerInput : MonoBehaviour {
             cardPlacementVisual.sprite = null;
             cardPlacementTransform.gameObject.SetActive(false);
 
-            if(CardController.Instance.currentSelectedCard.type == CardType.Tower)
+            if(CardController.instance.currentSelectedCard.type == CardType.Tower)
                 map.SetNodeOccupied(pos);
 
-            CardController.Instance.currentSelectedCard = null;
+            CardController.instance.UseSelectedCard();
         }
     }
 }

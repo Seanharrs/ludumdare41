@@ -52,12 +52,20 @@ public class EnemyCardDisplay : MonoBehaviour, IDisplay
 
     public bool TryPlayCard(Vector2 pos)
     {
+        if(CardController.instance.currencyLeft < m_CardData.cost)
+            return false;
+
         enemy.transform.position = pos;
         //enemy.GetComponent<Enemy>().enabled = true;
         enemy.GetComponent<Collider2D>().enabled = true;
         Destroy(enemy.GetComponent<FollowMouse>());
 
         return true;
+    }
+
+    public int GetCardCost()
+    {
+        return m_CardData.cost;
     }
 
 	public Sprite GetCardVisual()

@@ -49,18 +49,26 @@ public class TowerCardDisplay : MonoBehaviour, IDisplay
     {
 //        tower.GetComponent<TowerAttack>().enabled = false;
 //        tower.GetComponent<Collider2D>().enabled = false;
-		CardController.Instance.SetCurrentSelectedCard (this);
+		CardController.instance.currentSelectedCard = this;
     }
 
     public bool TryPlayCard(Vector2 pos)
     {
+        if(CardController.instance.currencyLeft < m_CardData.cost)
+            return false;
+
 		tower = Instantiate(m_CardData.towerPrefab, pos, Quaternion.identity);
         tower.GetComponent<TowerAttack>().SetTowerValues(m_CardData.damage, m_CardData.range, m_CardData.shootSpeed);
 
         return true;
     }
 
-	public Sprite GetCardVisual()
+    public int GetCardCost()
+    {
+        return m_CardData.cost;
+    }
+
+    public Sprite GetCardVisual()
 	{
 		return m_CardData.image;
 	}
