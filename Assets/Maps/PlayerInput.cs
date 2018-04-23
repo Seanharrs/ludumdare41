@@ -38,6 +38,7 @@ public class PlayerInput : MonoBehaviour {
 			towerPlacementVisual.sprite = CardController.Instance.currentSelectedCard.GetTowerVisual ();
 		}
 
+        // Tower is black if it cannot be placed on a tile and white if it can be placed on a tile
 		if (map.PlaceTower (pos,1,1)) {
 			towerPlacementVisual.color = Color.white;
 		} else {
