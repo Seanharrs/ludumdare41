@@ -37,6 +37,7 @@ public class EnemyWaveManager : MonoBehaviour
     private int m_WaveBonus;
 
     private int m_WaveNum = 0;
+	private bool m_WaveFinished = false;
 
     private void Awake()
     {
@@ -70,8 +71,7 @@ public class EnemyWaveManager : MonoBehaviour
     {
         if(m_WaveNum == m_NumberOfWaves)
         {
-            Debug.LogError("Wave finished");
-            SceneManager.LoadScene(m_GameOverScene);
+			m_WaveFinished = true;
             return;
         }
 
@@ -85,5 +85,20 @@ public class EnemyWaveManager : MonoBehaviour
     void Update()
     {
         WaveValue = m_WaveNum;
+		if (!m_WaveFinished) {
+			return;
+		}
+
+
+		for (int i = 0; i < m_Waves.Count; i++) {
+			for (int j = 0; j < m_Waves[i].Count; j++) {
+				if (m_Waves [i] [j].gameObject != null && m_Waves [i] [j].gameObject.activeSelf)
+					return;
+			}
+		}
+
+		// no move enemy so you win
+		SceneManager.LoadScene(m_GameOverScene);
+
     }
 }
