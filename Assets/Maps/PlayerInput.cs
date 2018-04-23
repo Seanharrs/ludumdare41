@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 
 // Example script for placeing the tower to it's position
+using UnityEngine.UI;
+
+
 public class PlayerInput : MonoBehaviour
 {
 
@@ -76,8 +80,10 @@ public class PlayerInput : MonoBehaviour
 			pos.y += map.gridSize/2f ;
             bool success = CardController.instance.currentSelectedCard.TryPlayCard(pos);
 
-            if(!success)
-                return;
+			if (!success) {
+				StartCoroutine( AnimateNotEnoighCurrency ());
+				return;
+			}
 
             cardPlacementVisual.sprite = null;
             cardPlacementTransform.gameObject.SetActive(false);
@@ -90,4 +96,45 @@ public class PlayerInput : MonoBehaviour
             CardController.instance.UseSelectedCard();
         }
     }
+
+	IEnumerator AnimateNotEnoighCurrency ()
+	{
+		CurrencyText text = GameObject.FindObjectOfType<CurrencyText> ();
+		Image image = text.GetComponentInParent<Image> ();
+		text.text.color = Color.red;
+		image.color = Color.black;
+		yield return new WaitForSeconds (0.05f);
+		text.text.color = Color.black;
+		image.color = Color.white;
+		yield return new WaitForSeconds (0.05f);
+		text.text.color = Color.red;
+		image.color = Color.black;
+		yield return new WaitForSeconds (0.05f);
+		text.text.color = Color.black;
+		image.color = Color.white;
+		yield return new WaitForSeconds (0.05f);
+		text.text.color = Color.red;
+		image.color = Color.black;
+		yield return new WaitForSeconds (0.05f);
+		text.text.color = Color.black;
+		image.color = Color.white;
+		yield return new WaitForSeconds (0.05f);
+		text.text.color = Color.red;
+		image.color = Color.black;
+		yield return new WaitForSeconds (0.05f);
+		text.text.color = Color.black;
+		image.color = Color.white;
+		yield return new WaitForSeconds (0.05f);
+		text.text.color = Color.red;
+		image.color = Color.black;
+		yield return new WaitForSeconds (0.05f);
+		text.text.color = Color.black;
+		image.color = Color.white;
+		yield return new WaitForSeconds (0.05f);
+		text.text.color = Color.red;
+		image.color = Color.black;
+		yield return new WaitForSeconds (0.05f);
+		text.text.color = Color.black;
+		image.color = Color.white;
+	}
 }

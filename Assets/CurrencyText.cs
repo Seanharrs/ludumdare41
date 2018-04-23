@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class CurrencyText : MonoBehaviour
 {
-    private Text text;
+    public Text text;
 
     private void Awake() { text = GetComponent<Text>(); }
 
