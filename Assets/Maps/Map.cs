@@ -101,7 +101,7 @@ public class Map : MonoBehaviour {
 				maps [x, y] = new Node (x, y);
 
 				foreach (Region region in regions.regions) {
-					if (Physics2D.OverlapCircle (worldPos, gridSize/2f, region.regionMask)) {
+					if (Physics2D.OverlapCircle (worldPos, gridSize/4f, region.regionMask)) {
 						maps [x, y].movementCost = region.movementCost;
 						maps [x, y].NodeType = region.nodeType;
 					}
@@ -118,6 +118,7 @@ public class Map : MonoBehaviour {
 
 	public Node GetNodeFromPosition (Vector3 pos){
 		Vector3 worldPos = (pos ) + Vector3.right * gridSize  * ((width / 2)) + Vector3.up * gridSize * ((height / 2) );
+
 		int x = (Mathf.RoundToInt(worldPos.x / gridSize));
 		int y = Mathf.RoundToInt(worldPos.y / gridSize);
 		if (x >= width -1) {
@@ -180,11 +181,13 @@ public class Map : MonoBehaviour {
 			return false;
 		}
 
+		/*
 		if (node.NodeType == NodeType.TOWER) {
 			if (CanUseCard (gridSizeX, gridSizeY, node, NodeType.TOWER)) {
 				return true;
 			}
 		}
+		*/
 
 		if (node.NodeType == NodeType.GROUND) {
 			if (CanUseCard (gridSizeX, gridSizeY, node, NodeType.GROUND)) {

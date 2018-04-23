@@ -133,6 +133,9 @@ public class TowerAttack : MonoBehaviour, ITower
             return false;
 
         m_UpgradeLevel++;
+		if (m_UpgradeLevel > 1) {
+			GetComponentInChildren<SpriteRenderer> ().color = Color.red;
+		}
         m_Damage = (int)(m_Damage * dmgMult);
         m_ShootSpeed = m_ShootSpeed * spdMult;
         m_Range = (int)(m_Range * rngMult);

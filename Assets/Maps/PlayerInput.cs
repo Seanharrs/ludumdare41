@@ -41,8 +41,11 @@ public class PlayerInput : MonoBehaviour
 
         pos.z = 0;
 
-        pos.x = Mathf.Round(pos.x);
-        pos.y = Mathf.Round(pos.y);
+		pos.x = Mathf.RoundToInt((pos.x )/map.gridSize) * map.gridSize;
+		pos.y = Mathf.RoundToInt((pos.y )/map.gridSize) * map.gridSize;
+		pos.x -= 0.1f;
+		pos.y -= 0.1f;
+
         cardPlacementTransform.transform.localPosition = pos;
         cardPlacementTransform.transform.localScale = Vector3.one;
 
@@ -51,7 +54,12 @@ public class PlayerInput : MonoBehaviour
             cardPlacementVisual.sprite = CardController.instance.currentSelectedCard.GetCardVisual();
         }
 
-        if((CardController.instance.currentSelectedCard.type == CardType.Tower && !map.CanPlaceTower(pos, 1, 1))
+		if (Input.GetMouseButtonDown (1)) {
+			CardController.instance.UseSelectedCard(false);
+			cardPlacementVisual.sprite = null;
+		}
+
+		if((CardController.instance.currentSelectedCard.type == CardType.Tower && !map.CanPlaceTower(pos, 1 , 1 ))
             || (CardController.instance.currentSelectedCard.type == CardType.Magic && !map.CanUseMagic(pos, 1, 1)))
         {
             //Darken image if card cannot be used on that tile
@@ -63,6 +71,8 @@ public class PlayerInput : MonoBehaviour
 
         if(Input.GetMouseButtonUp(0))
         {
+			pos.x += map.gridSize/2f ;
+			pos.y += map.gridSize/2f ;
             bool success = CardController.instance.currentSelectedCard.TryPlayCard(pos);
 
             if(!success)
@@ -78,6 +88,5 @@ public class PlayerInput : MonoBehaviour
 
             CardController.instance.UseSelectedCard();
         }
-
     }
 }

@@ -44,10 +44,12 @@ public class CardController : MonoBehaviour {
 		m_Anim.SetTrigger (m_ShowCards ? "In" : "Out");
 	}
 
-    public void UseSelectedCard()
+	public void UseSelectedCard(bool reduceCost = true)
     {
-        m_CurrencyLeft -= currentSelectedCard.GetCardCost();
-        m_CurrencyText.UpdateCurrency(m_CurrencyLeft);
+		if (reduceCost) {
+			m_CurrencyLeft -= currentSelectedCard.GetCardCost ();
+			m_CurrencyText.UpdateCurrency (m_CurrencyLeft);
+		}
         currentSelectedCard = null;
     }
 
