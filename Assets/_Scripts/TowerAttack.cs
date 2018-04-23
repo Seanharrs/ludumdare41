@@ -1,13 +1,12 @@
 ﻿using EZObjectPools;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class TowerAttack : MonoBehaviour, ITower
 {
     private static EZObjectPool m_pool;
-
-    private int m_count;
-
+    
     [SerializeField]
     private int m_Damage;
     public int damage { get { return m_Damage; } }
@@ -33,10 +32,18 @@ public class TowerAttack : MonoBehaviour, ITower
     public Transform weapon;
     [SerializeField] private float m_weaponSpeed;
 
+    [SerializeField]
+    private Transform shooting;
+
+    private Enemy target;
+
     public bool canUpgrade { get { return m_UpgradeLevel != m_MaxUpgradeLevel; } }
 
     private void Start()
     {
+        InvokeRepeating("FindTarget", 0.01f, 1f);
+        StartCoroutine(Shoot());
+
         if(m_pool == null)
         {
             m_pool = FindObjectOfType<EZObjectPool>();
@@ -45,22 +52,51 @@ public class TowerAttack : MonoBehaviour, ITower
 
     private void Update()
     {
-        if(minEnemy == null)
+        if(target == null)
         {
             weapon.rotation = Quaternion.Slerp(weapon.rotation, Quaternion.Euler(0, 0, -45), Time.deltaTime * m_weaponSpeed);
             return;
         }
-        var dir = minEnemy.transform.position - transform.position;
+        var dir = target.transform.position - transform.position;
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         weapon.rotation = Quaternion.Slerp(weapon.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * m_weaponSpeed);
     }
 
-    private void FixedUpdate()
+    void FindTarget()
     {
-        if(++m_count == 20)
+        target = null;
+        float minDist = float.MaxValue;
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+        for(int i = 0; i < enemies.Length; i++)
         {
-            StartCoroutine(ShootEnemies());
-            m_count = 0;
+            float dist = Vector2.Distance(transform.position, enemies[i].transform.position);
+            if(dist <= m_Range && dist < minDist)
+            {
+                minDist = dist;
+                target = enemies[i];
+            }
+        }
+    }
+
+    IEnumerator Shoot()
+    {
+        if(target == null)
+            yield return new WaitUntil(() => target != null);
+
+        while(Vector2.Distance(transform.position, target.transform.position) < m_Range)
+        {
+            GameObject bulletObj;
+            m_pool.TryGetNextObject(shooting.position, weapon.rotation, out bulletObj);
+
+            Bullet bullet = bulletObj.GetComponent<Bullet>();
+            bullet.SetDamage(m_Damage);
+            bullet.SetSprite(m_BulletSprite);
+            bullet.Shoot();
+
+            yield return new WaitForSeconds(1 / m_ShootSpeed);
+
+            if(target == null)
+                yield return new WaitUntil(() => target != null);
         }
     }
 
@@ -71,19 +107,19 @@ public class TowerAttack : MonoBehaviour, ITower
         m_ShootSpeed = shootSpeed;
     }
 
-    public void Highlight()
-    {
-        Color color = GetComponent<SpriteRenderer>().color;
-        color.g = 255;
-        GetComponent<SpriteRenderer>().color = color;
-    }
+    //public void Highlight()
+    //{
+    //    Color color = GetComponent<SpriteRenderer>().color;
+    //    color.g = 255;
+    //    GetComponent<SpriteRenderer>().color = color;
+    //}
 
-    public void RemoveHighlight()
-    {
-        Color color = GetComponent<SpriteRenderer>().color;
-        color.g = 155;
-        GetComponent<SpriteRenderer>().color = color;
-    }
+    //public void RemoveHighlight()
+    //{
+    //    Color color = GetComponent<SpriteRenderer>().color;
+    //    color.g = 155;
+    //    GetComponent<SpriteRenderer>().color = color;
+    //}
 
     /// <summary>
     /// Called when an upgrade tower card is used on a tower
@@ -102,48 +138,5 @@ public class TowerAttack : MonoBehaviour, ITower
         m_ShootSpeed = m_ShootSpeed * spdMult;
         m_Range = (int)(m_Range * rngMult);
         return true;
-    }
-
-    private float min = float.MaxValue;
-    private Enemy minEnemy = null;
-    [SerializeField] private Transform shooting;
-
-
-    private IEnumerator ShootEnemies()
-    {
-        min = float.MaxValue;
-        minEnemy = null;
-
-        if(m_pool != null)
-        {
-            var enemies = FindObjectsOfType<Enemy>();
-
-            foreach(var enemy in enemies)
-            {
-                if(enemy == null)
-                {
-                    continue;
-                }
-                var dis = Vector2.Distance(enemy.transform.position, transform.position);
-                if(dis < m_Range && dis < min)
-                {
-                    min = dis;
-                    minEnemy = enemy;
-                }
-            }
-
-            if(minEnemy != null)
-            {
-                GameObject bulletObj;
-                m_pool.TryGetNextObject(shooting.position, weapon.rotation, out bulletObj);
-
-                Bullet bullet = bulletObj.GetComponent<Bullet>();
-                bullet.SetDamage(m_Damage);
-                bullet.SetSprite(m_BulletSprite);
-                bullet.Shoot();
-
-                yield return new WaitForSeconds(m_ShootSpeed);
-            }
-        }
     }
 }

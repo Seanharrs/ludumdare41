@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1806913571572016}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8000001, y: 0, z: 1}
+  m_LocalPosition: {x: 3, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4141337543915220}
@@ -95,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1653050989896378}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -20, z: 0}
+  m_LocalPosition: {x: -52.152103, y: 10.575205, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4141337543915220}
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_BulletSprite: {fileID: 21300000, guid: 2a4dab0422307fa438756cbcebad8e23, type: 3}
   m_MaxUpgradeLevel: 3
   weapon: {fileID: 4141337543915220}
-  m_weaponSpeed: 2
+  m_weaponSpeed: 6
   shooting: {fileID: 4034417964296420}
 --- !u!212 &212263700661978000
 SpriteRenderer:
