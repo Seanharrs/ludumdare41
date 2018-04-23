@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 29dd95b4d0fcd0d459481602277ed1be
 timeCreated: 1524483527
+=======
+guid: 618c4d1df073c6e47874ef9a9f9f64ca
+timeCreated: 1524484936
+>>>>>>> 8fbfbf643f2a3427e3c8dc4119b7d039d649eec1
 licenseType: Free
 AudioImporter:
   externalObjects: {}
@@ -16,7 +21,11 @@ AudioImporter:
   forceToMono: 0
   normalize: 1
   preloadAudioData: 1
+<<<<<<< HEAD
   loadInBackground: 1
+=======
+  loadInBackground: 0
+>>>>>>> 8fbfbf643f2a3427e3c8dc4119b7d039d649eec1
   ambisonic: 0
   3D: 1
   userData: 
