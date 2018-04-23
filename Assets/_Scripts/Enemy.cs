@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             GetComponentInChildren<Animator>().SetTrigger("Die");
-            Destroy(gameObject, 4f);
+            Destroy(gameObject, 1.5f);
         }
     }
 

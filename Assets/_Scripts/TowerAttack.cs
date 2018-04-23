@@ -80,7 +80,7 @@ public class TowerAttack : MonoBehaviour, ITower
     IEnumerator Shoot()
     {
         if(target == null)
-            yield return new WaitUntil(() => target != null);
+            yield return null;
 
         while(Vector2.Distance(transform.position, target.transform.position) < m_Range)
         {
@@ -93,9 +93,6 @@ public class TowerAttack : MonoBehaviour, ITower
             bullet.Shoot();
 
             yield return new WaitForSeconds(1 / m_ShootSpeed);
-
-            if(target == null)
-                yield return new WaitUntil(() => target != null);
         }
     }
 
@@ -133,9 +130,10 @@ public class TowerAttack : MonoBehaviour, ITower
             return false;
 
         m_UpgradeLevel++;
-		if (m_UpgradeLevel > 1) {
-			GetComponentInChildren<SpriteRenderer> ().color = Color.red;
-		}
+        if(m_UpgradeLevel > 1)
+        {
+            GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        }
         m_Damage = (int)(m_Damage * dmgMult);
         m_ShootSpeed = m_ShootSpeed * spdMult;
         m_Range = (int)(m_Range * rngMult);
