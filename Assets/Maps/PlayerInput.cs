@@ -21,7 +21,7 @@ public class PlayerInput : MonoBehaviour
 
         cardPlacementTransform.gameObject.SetActive(false);
 
-        if(CardController.instance.currentSelectedCard == null)
+		if(CardController.instance != null && CardController.instance.currentSelectedCard == null)
         {
             return;
         }
