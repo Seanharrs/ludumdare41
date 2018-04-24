@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Squirrel
   m_EditorClassIdentifier: 
   m_CardName: Cannon
-  m_Cost: 50
+  m_Cost: 30
   m_Desc: Shoots acorns at enemies.
   m_Image: {fileID: 21300000, guid: 9efb7635f3f58a44c9690156cd9eef26, type: 3}
   m_Dmg: 25

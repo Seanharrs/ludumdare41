@@ -56,15 +56,16 @@ public class TowerAttack : MonoBehaviour, ITower
 
     private void Update()
     {
-/*         if(target == null)
+        if(target == null)
         {
-            weapon.rotation = Quaternion.Slerp(weapon.rotation, Quaternion.Euler(0, 0, -45), Time.deltaTime * m_weaponSpeed);
+            //weapon.rotation = Quaternion.Slerp(weapon.rotation, Quaternion.Euler(0, 0, -45), Time.deltaTime * m_weaponSpeed);
             return;
-        } */
-		correctionVectTemp1 = correctionVectTemp2;
-		correctionVectTemp2 = target.transform.position;
+        } 
+		    correctionVectTemp1 = correctionVectTemp2;
+		    correctionVectTemp2 = target.transform.position;
         var dir = (target.transform.position - transform.position)-(correctionVectTemp1-correctionVectTemp2)*target.speed;
-		Debug.Log(target.speed);
+		    Debug.Log(target.speed);
+        
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         weapon.rotation = Quaternion.Slerp(weapon.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * m_weaponSpeed);
     }
