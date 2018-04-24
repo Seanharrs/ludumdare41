@@ -59,7 +59,7 @@ public class TowerAttack : MonoBehaviour, ITower
             return;
         } */
 
-        var dir = (target.transform.position - transform.position)//+(target.transform.position-target.targetPos);
+        var dir = (target.transform.position - transform.position);//+(target.transform.position-target.targetPos);
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         weapon.rotation = Quaternion.Slerp(weapon.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * m_weaponSpeed);
     }
