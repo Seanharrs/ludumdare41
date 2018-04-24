@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public float turnSpeed;
     public float speed;
 	public Vector3 targetPos;
+	public Vector3 tempTargetPos;
 
     Path path;
     int lineIndex;
@@ -108,6 +109,7 @@ public class Enemy : MonoBehaviour
             m_SpriteRenderer.flipX = true;
         else if(offset.x >= 0 && m_SpriteRenderer.flipX)
             m_SpriteRenderer.flipX = false;
+		var tempTargetPos = targetPos;
         transform.position = Vector2.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
         //transform.Translate((Vector3.right) * speed * Time.deltaTime, Space.Self);
 

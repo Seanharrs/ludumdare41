@@ -38,6 +38,9 @@ public class TowerAttack : MonoBehaviour, ITower
 
     private Enemy target;
 
+	Vector3 correctionVectTemp1;
+	Vector3 correctionVectTemp2;
+	
     public bool canUpgrade { get { return m_UpgradeLevel != m_MaxUpgradeLevel; } }
 
     private void Start()
@@ -57,9 +60,12 @@ public class TowerAttack : MonoBehaviour, ITower
         {
             //weapon.rotation = Quaternion.Slerp(weapon.rotation, Quaternion.Euler(0, 0, -45), Time.deltaTime * m_weaponSpeed);
             return;
-        }
-
-        var dir = (target.transform.position - transform.position);//+(target.transform.position-target.targetPos);
+        } 
+		    correctionVectTemp1 = correctionVectTemp2;
+		    correctionVectTemp2 = target.transform.position;
+        var dir = (target.transform.position - transform.position)-(correctionVectTemp1-correctionVectTemp2)*target.speed;
+		    Debug.Log(target.speed);
+        
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         weapon.rotation = Quaternion.Slerp(weapon.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * m_weaponSpeed);
     }
