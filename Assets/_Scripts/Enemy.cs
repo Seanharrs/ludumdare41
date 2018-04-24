@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
 	
     public float turnSpeed;
     public float speed;
+	public Vector3 targetPos;
 
     Path path;
     int lineIndex;

@@ -10,6 +10,8 @@ public class TowerAttack : MonoBehaviour, ITower
     private int m_Damage;
     public int damage { get { return m_Damage; } }
 
+	
+	
     [SerializeField]
     private int m_Range;
     public int range { get { return m_Range; } }
@@ -51,12 +53,13 @@ public class TowerAttack : MonoBehaviour, ITower
 
     private void Update()
     {
-        if(target == null)
+/*         if(target == null)
         {
             weapon.rotation = Quaternion.Slerp(weapon.rotation, Quaternion.Euler(0, 0, -45), Time.deltaTime * m_weaponSpeed);
             return;
-        }
-        var dir = target.transform.position - transform.position;
+        } */
+
+        var dir = (target.transform.position - transform.position)+(target.transform.position-target.targetPos);
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         weapon.rotation = Quaternion.Slerp(weapon.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * m_weaponSpeed);
     }
