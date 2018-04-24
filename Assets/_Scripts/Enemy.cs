@@ -3,8 +3,12 @@
 [RequireComponent(typeof(Collider2D))]
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float m_health = 100f;
 
+    [SerializeField] 
+	private float m_health = 100f;
+	private bool m_Dead = false;
+	
+	
     public float turnSpeed;
     public float speed;
 
@@ -18,6 +22,7 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     SpriteRenderer m_SpriteRenderer;
+	private AudioClip m_Enemy_Death1; //assign this in the Inspector
 
     void Start()
     {
@@ -108,17 +113,40 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void Damage(float damage)
+/*     private void Damage(float damage)
     {
         m_health -= damage;
         if(m_health <= 0)
         {
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             GetComponentInChildren<Animator>().SetTrigger("Die");
+			//In Damage() method at bottom of class
+			//AudioSource audio = GetComponent<AudioSource>();
+			//audio.clip = m_Enemy_Death1;
+			//audio.Play();
             Destroy(gameObject, 1.5f);
+			m_Dead = true;
+			if(m_health <= 0)
+			{
+				GetComponent<AudioSource>().Play();	
+			}
         }
-    }
+    } */
 
+
+	private void Damage(float damage)
+	{
+		m_health -= damage;
+		if(m_health <= 0 && !m_Dead)
+		{
+			GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+			GetComponentInChildren<Animator>().SetTrigger("Die");
+					  GetComponent<AudioSource>().Play();
+			Destroy(gameObject, 1.5f);
+			m_Dead = true;
+		}
+	}
+	
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Bullet")
