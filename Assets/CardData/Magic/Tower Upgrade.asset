@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Tower Upgrade
   m_EditorClassIdentifier: 
   m_CardName: Upgrade Tower
-  m_Cost: 30
+  m_Cost: 50
   m_Desc: Upgrades the selected tower's damage, speed, and range.
   m_Image: {fileID: 21300000, guid: 441e00181615e8b46b4059bb8098a00f, type: 3}
   m_DamageMultiplier: 1.2
