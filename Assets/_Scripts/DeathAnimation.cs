@@ -3,11 +3,18 @@
 public class DeathAnimation : MonoBehaviour
 {
     private Animator m_Anim;
-
+	
     private int m_DieHash;
 
     private void Awake()
     {
+		
+		//AudioSource audio = GetComponent<AudioSource>();
+        
+		//audio.Play();
+        //audio.Play(Enemies_Death);
+		
+		
 		Rigidbody rb = GetComponent<Rigidbody> ();
         if(rb)
             rb.velocity = Vector3.zero;
@@ -21,7 +28,9 @@ public class DeathAnimation : MonoBehaviour
 
         m_DieHash = Animator.StringToHash("Base Layer.Death");
 
-        //AudioClip[] possibleDeathSounds = /*get death sound*/;
+		
+        //audio.Play (Turret_firing_sound);
+		//AudioClip[] possibleDeathSounds = Enemies Death;
         //AudioClip deathSound = possibleDeathSounds[Random.Range(0, possibleDeathSounds.Length)];
 
         //AudioSource.PlayClipAtPoint(deathSound, transform.position, PlayPrefs.GameSoundVolume);
