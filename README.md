@@ -8,7 +8,7 @@ Tower Deck Furenzy is a game which has been developed by three coders, two artis
 
 Defend your base!
 
-![Place towers](https://i.imgur.com/hZ3nzUW.mp4)
+![Place towers](https://i.imgur.com/hZ3nzUW.gif)
 
 Upgrade your defenses!
 
